@@ -1,15 +1,14 @@
 import './App.css';
-import { useTeste } from './hooks/useTeste';
+import Register from './pages/Register';
+import Login from './pages/Login';
+
 function App() {
-  const { dados } = useTeste();
+
   return (
     <div className="App">
       <h1>Minhas receitas</h1>
-      {
-        dados.map((item) => (
-          <p>Nome:{item.nome}</p>
-        ))
-      }
+      <Register />
+      <Login/>
     </div>
   );
 }
