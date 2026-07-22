@@ -1,6 +1,7 @@
 import './App.css';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import Recipes from './pages/Recipes';
 
 function App() {
 
@@ -8,7 +9,8 @@ function App() {
     <div className="App">
       <h1>Minhas receitas</h1>
       <Register />
-      <Login/>
+      <Login />
+      <Recipes />
     </div>
   );
 }
