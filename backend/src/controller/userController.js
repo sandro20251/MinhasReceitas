@@ -2,6 +2,7 @@ const User = require('../models/User');
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const bcrypt = require('bcrypt');
 const createToken = require('../helpers/createToken');
+const mongoose = require('mongoose')
 module.exports = class UserController {
 
     // cadastro
@@ -35,7 +36,7 @@ module.exports = class UserController {
         }
 
         const userExists = await User.findOne({ email });
-      
+
         if (userExists) {
             res.status(422).json({ message: "Este e-mail já está em uso" });
             return;
@@ -119,6 +120,32 @@ module.exports = class UserController {
     static update = async (req, res) => {
 
     }
+
+    // resgatar dados do usuario
+
+    static getPeople = async (req, res) => {
+        const id = req.params.id;
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            res.status(422).json({ message: "Id inválido" });
+            return;
+        }
+
+        const user = await User.findById(id).select("-password");
+
+        if (!user) {
+            res.status(404).json({ message: "Usuário não encontrado" });
+            return;
+        }
+
+        try {
+            res.status(200).json(user);
+            return;
+        } catch (err) {
+            ser.status(500).json({ message: err.message })
+        }
+    }
+
 
 
 }

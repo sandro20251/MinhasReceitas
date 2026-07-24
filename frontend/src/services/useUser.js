@@ -1,5 +1,5 @@
 const url = process.env.REACT_APP_URL_BACKEND;
-console.log(url)
+
 const register = async (user) => {
 
     const res = await fetch(url,{

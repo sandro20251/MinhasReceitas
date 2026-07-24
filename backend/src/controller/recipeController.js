@@ -39,7 +39,7 @@ module.exports = class recipeController {
             category,
             ingredients,
             preparation,
-            user: user.id
+            user: req.user.id
         })
 
         try {
@@ -55,7 +55,7 @@ module.exports = class recipeController {
     // listar receitas
     static readall = async (req, res) => {
         try {
-            const recipes = await Recipe.find().lean();
+            const recipes = await Recipe.find().populate("user", "name image _id");;
             res.status(200).json(recipes);
             return;
         } catch (err) {
@@ -80,7 +80,7 @@ module.exports = class recipeController {
 
 
         try {
-            const receita = await Recipe.findById(id);
+            const receita = await Recipe.findById(id).populate("user", "name image _id");
             res.status(200).json(receita);
             return;
 
@@ -207,6 +207,35 @@ module.exports = class recipeController {
             res.status(500).json({ message: err.message });
             return;
         }
+
+    }
+
+    // buscar receita por usuario
+
+    static recipesByUser = async (req, res) => {
+        const idUsuario = req.params.idUsuario;
+        console.log(idUsuario)
+
+        if (!mongoose.Types.ObjectId.isValid(idUsuario)) {
+            res.status(422).json({ message: "id inválido" });
+            return;
+        }
+
+        const receitas = await Recipe.find({user:idUsuario}).sort({ createdAt: -1 }).populate("user", "name image");;
+        console.log(receitas)
+        if (receitas.length === 0) {
+            res.status(404).json({ message: "Nenhuma receita encontrada" });
+            return;
+        }
+
+        try {
+            res.status(200).json(receitas);
+            return;
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+            return;
+        }
+
 
     }
 }

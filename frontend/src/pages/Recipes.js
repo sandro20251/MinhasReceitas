@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { createRecipes } from "../services/useRecipes";
+import { useRecipes } from "../services/useRecipes";
 
 const Recipes = () => {
+    const {createRecipes} = useRecipes();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
@@ -15,7 +16,7 @@ const Recipes = () => {
 
     const handleCreate = async (e) => {
         e.preventDefault();
-
+        
         const recipe = {
             title,
             description,
@@ -25,7 +26,9 @@ const Recipes = () => {
 
 
         }
+       
         setLoading(true)
+         
         try {
             await createRecipes(recipe)
             setTitle("")
@@ -37,7 +40,7 @@ const Recipes = () => {
             setMessage("Receita criada com sucesso!")
 
             return;
-
+            console.log("entrou aqui")
         } catch (err) {
             setMessage(err.message)
             return;

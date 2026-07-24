@@ -6,7 +6,9 @@ const authorization = require('../helpers/authorization');
 // criar receita
 router.post('/', authorization, recipeContorller.create);
 // listar receitas
-router.get('/', authorization, recipeContorller.readall);
+router.get('/', recipeContorller.readall);
+// receitas por usuario
+router.get('/ByUser/:idUsuario', recipeContorller.recipesByUser);
 // buscar receita
 router.get('/:id', authorization, recipeContorller.read);
 // atualizar receita
