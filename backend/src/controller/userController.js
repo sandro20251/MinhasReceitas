@@ -2,7 +2,9 @@ const User = require('../models/User');
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const bcrypt = require('bcrypt');
 const createToken = require('../helpers/createToken');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const Favorite = require('../models/Favorite');
+const { updateSearchIndex } = require('../models/Comments');
 module.exports = class UserController {
 
     // cadastro
@@ -146,6 +148,19 @@ module.exports = class UserController {
         }
     }
 
+    // buscar receitas favoritas
+    static readFavorite = async (req, res) => {
+        const userId = req.user.id;
 
+        try {
+            const favoritos = await Favorite.find({ user: userId }).populate("recipe", "title description category id");
+            res.status(200).json(favoritos);
+            return;
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+            return;
+        }
+
+    }
 
 }

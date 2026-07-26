@@ -16,9 +16,9 @@ const Login = () => {
         setLoading(true)
         try {
             const response = await logar(user);
-
+            console.log(response)
             localStorage.setItem('token', response.token);
-            localStorage.setItem("user", JSON.stringify(response.user));
+            localStorage.setItem('user', JSON.stringify(response.user));
             setMessage(response.message);
             return;
         } catch (err) {

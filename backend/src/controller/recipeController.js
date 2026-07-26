@@ -1,5 +1,9 @@
 const Recipe = require('../models/Recipe');
 const mongoose = require('mongoose');
+const Like = require('../models/Like');
+const Comment = require('../models/Comments');
+const Favorite = require('../models/Favorite');
+
 
 module.exports = class recipeController {
     // criar receita
@@ -221,7 +225,7 @@ module.exports = class recipeController {
             return;
         }
 
-        const receitas = await Recipe.find({user:idUsuario}).sort({ createdAt: -1 }).populate("user", "name image");;
+        const receitas = await Recipe.find({ user: idUsuario }).sort({ createdAt: -1 }).populate("user", "name image");;
         console.log(receitas)
         if (receitas.length === 0) {
             res.status(404).json({ message: "Nenhuma receita encontrada" });
@@ -237,5 +241,275 @@ module.exports = class recipeController {
         }
 
 
+    }
+
+    // curtir receitas
+
+    static like = async (req, res) => {
+
+        const idReceita = req.params.idReceita;
+
+        if (!mongoose.Types.ObjectId.isValid(idReceita)) {
+            res.status(422).json({ message: "Id inválido" });
+            return;
+        }
+
+        const receita = await Recipe.findById(idReceita);
+
+        if (!receita) {
+            res.status(404).json({ mensagem: "Nenhuma receita encontrada" });
+            return;
+
+        }
+
+        const user = req.user;
+
+        if (!user) {
+            res.status(422).json({ message: "Usuario não encontrado" });
+            return;
+        }
+
+        const idUser = req.user.id;
+        const receitaCurtida = await Like.findOne({ userId: idUser, recipeId: idReceita });
+
+
+        if (receitaCurtida) {
+            res.status(422).json({ message: "Você já curtiu essa receita" });
+            return;
+        }
+
+        const like = new Like({
+            userId: idUser,
+            recipeId: idReceita
+        })
+
+
+
+        try {
+            const curtir = await like.save();
+            res.status(201).json({ message: "Receita curtida" });
+
+            return;
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+            return;
+        }
+
+    }
+
+    // descurtindo receita
+
+    static deslike = async (req, res) => {
+        const idReceita = req.params.idReceita;
+
+        if (!mongoose.Types.ObjectId.isValid(idReceita)) {
+            res.status(422).json({ message: "Id inválido" });
+            return;
+        }
+
+        const receita = await Recipe.findById(idReceita);
+
+        if (!receita) {
+            res.status(404).json({ mensagem: "Nenhuma receita encontrada" });
+            return;
+
+        }
+
+        const idUser = req.user.id;
+
+        const curtida = await Like.findOne({
+            userId: idUser,
+            recipeId: idReceita
+        });
+
+        if (!curtida) {
+            res.status(404).json({ message: "Você ainda não curtiu este post" });
+            return;
+        }
+
+        try {
+            await Like.findOneAndDelete({
+                userId: idUser,
+                recipeId: idReceita
+            });
+            res.status(201).json({ message: "Deslike na receita" });
+            return;
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+            return;
+        }
+
+    }
+
+    // consultando curitdas por receita 
+
+    static count = async (req, res) => {
+        const idReceita = req.params.idReceita;
+
+        if (!mongoose.Types.ObjectId.isValid(idReceita)) {
+            res.status(422).json({ message: "Id inválido" });
+            return;
+        }
+
+        const receita = await Recipe.findById(idReceita);
+
+        if (!receita) {
+            res.status(404).json({ message: "Receita não encontrada" });
+            return;
+        }
+
+        try {
+
+            const total = await Like.countDocuments({
+                recipeId: idReceita
+            });
+
+            res.status(200).json(total);
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+            return;
+        }
+    }
+
+    // adicionar comentario
+
+    static createComment = async (req, res) => {
+        const userId = req.user.id;
+
+        const idRecipe = req.params.idRecipe;
+
+        if (!mongoose.Types.ObjectId.isValid(idRecipe)) {
+            res.status(422).json({ message: "Id inválido" });
+            return;
+        }
+
+        const recipe = await Recipe.findById(idRecipe);
+
+        if (!recipe) {
+            res.status(404).json({ message: "Receita não encontrada" });
+            return;
+        }
+
+        const { text } = req.body;
+
+        if (!text) {
+            res.status(422).json({ message: "Precisamos do texto para dar continuidade ao comentario" });
+            return;
+        }
+
+        const comment = new Comment({
+            text: text,
+            user: userId,
+            recipe: idRecipe,
+        })
+
+        try {
+            const novoComentario = await comment.save();
+            res.status(200).json(novoComentario);
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+            return;
+        }
+    }
+
+    // ler comentatrios da receita
+    static allComments = async (req, res) => {
+
+
+        try {
+
+            const idRecipe = req.params.idRecipe;
+
+            if (!mongoose.Types.ObjectId.isValid(idRecipe)) {
+                res.status(422).json({ message: "Id inválido" });
+                return;
+            }
+
+            const receita = await Recipe.findById(idRecipe);
+
+            if (!receita) {
+                res.status(404).json({ message: "Receita não encontrada" });
+                return;
+            }
+
+            const comments = await Comment.find({ recipe: idRecipe }).populate("user", "name");
+            res.status(200).json(comments);
+
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+            return;
+        }
+    }
+
+    static addFavorite = async (req, res) => {
+
+
+        try {
+            const userId = req.user.id;
+            const idRecipe = req.params.idRecipe;
+            
+            const exists = await Favorite.findOne({
+                user: userId,
+                recipe: idRecipe
+            });
+
+            if (exists) {
+                return res.status(422).json({
+                    message: "Receita já favoritada."
+                });
+            }
+            if (!mongoose.Types.ObjectId.isValid(idRecipe)) {
+                res.status(422).json({ message: "Id inválido" });
+                return;
+            }
+
+            const receita = await Recipe.findById(idRecipe);
+
+            if (!receita) {
+                res.status(404).json({ message: "Receita não encontrada" });
+                return;
+            }
+
+            const favorite = new Favorite({
+                user: userId,
+                recipe: idRecipe
+            })
+
+            const newFavorite = await favorite.save();
+            res.status(201).json(newFavorite);
+
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+            return;
+        }
+    }
+
+    static removeFavorite = async (req, res) => {
+        try {
+            const userId = req.user.id;
+            const idRecipe = req.params.idRecipe;
+
+            if (!mongoose.Types.ObjectId.isValid(idRecipe)) {
+                res.status(422).json({ message: "Id inválido" });
+                return;
+            }
+
+            const receita = await Recipe.findById(idRecipe);
+
+            if (!receita) {
+                res.status(404).json({ message: "Receita não encontrada" });
+                return;
+            }
+
+            await Favorite.deleteOne({
+                user: userId,
+                recipe: idRecipe
+            });
+            res.status(200).json({ message: "receita desfavoritada com sucesso" });
+
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+            return;
+        }
     }
 }

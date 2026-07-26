@@ -6,6 +6,9 @@ const authorization = require('../helpers/authorization');
 router.post('/register', UserController.register);
 // Login
 router.post('/login', UserController.login);
+// buscar receitas favoritas
+router.get('/all/favorites', authorization, UserController.readFavorite);
+
 // Buscar dados do usuario
 router.get('/:id', authorization, UserController.getPeople);
 

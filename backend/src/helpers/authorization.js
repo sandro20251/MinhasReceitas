@@ -13,6 +13,7 @@ const authorization = (req, res, next) => {
         req.user = decoded;
         next();
     } catch (err) {
+        console.log("Erro JWT:", err.message);
         return res.status(401).json({
             message: "Token inválido ou expirado"
         });

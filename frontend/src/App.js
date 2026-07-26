@@ -6,6 +6,7 @@ import { Link, BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from '../src/pages/Home';
 import Recipe from '../src/pages/Recipe';
 import UserProfile from './pages/UserProfile';
+import Favoritos from './pages/Favoritos';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Link to="/register">Registre-se aqui</Link>
           <Link to="/login">Login</Link>
           <Link to="/recipes">Receitas</Link>
+          <Link to="/favorites">Receitas favoritas</Link>
         </div>
 
         <Routes>
@@ -29,6 +31,7 @@ function App() {
           <Route path="/recipes" element={<Recipes />} />
           <Route path={`/recipe/:id`} element={<Recipe />} />
           <Route path={`/users/:id`} element={<UserProfile />} />
+          <Route path={`/favorites`} element={<Favoritos />} />
 
         </Routes>
       </BrowserRouter>

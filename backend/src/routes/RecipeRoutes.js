@@ -15,5 +15,21 @@ router.get('/:id', authorization, recipeContorller.read);
 router.patch('/:id', authorization, recipeContorller.update);
 // excluir receita
 router.delete('/:id', authorization, recipeContorller.delete);
+// curtindo receitas
+router.post('/:idReceita/like', authorization, recipeContorller.like);
+// descurtidno receitas
+router.delete('/:idReceita/like', authorization, recipeContorller.deslike);
+// contar Curtidas
+router.get('/:idReceita/count', authorization, recipeContorller.count);
+// comentar receita
+router.post('/:idRecipe/comments', authorization, recipeContorller.createComment);
+// buscar comentários da receita
+router.get('/:idRecipe/comments', authorization, recipeContorller.allComments);
+// adicionar receitas favoritas
+router.post('/:idRecipe/favorite', authorization, recipeContorller.addFavorite);
+// retirar dos favoritos
+router.delete('/:idRecipe/favorite', authorization, recipeContorller.removeFavorite);
+
+
 
 module.exports = router;
