@@ -183,7 +183,22 @@ const useRecipes = () => {
         return json;
     }
 
-    return { createRecipes, lerReceita, readRecipe, recipeByUser, LikeService, DeslikeService, CountLike, newComment, allComments, addFavorite, removeFavorite, receita, comentarios }
+    const searchTitle = async (busca) => {
+
+        const res = await fetch(`${url}/portitulo?titleSearch=${busca}`)
+        const json = await res.json();
+        return json;
+    }
+
+    const searchCategory = async (busca) => {
+        const res = await fetch(`${url}/category?category=${busca}`);
+      
+        const json = await res.json();
+        return json;
+
+    }
+
+    return { createRecipes, lerReceita, readRecipe, recipeByUser, LikeService, DeslikeService, CountLike, newComment, allComments, addFavorite, removeFavorite, searchTitle, searchCategory, receita, comentarios }
 }
 
 

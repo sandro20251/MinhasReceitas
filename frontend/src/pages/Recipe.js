@@ -16,7 +16,8 @@ const Recipe = () => {
     const [message, setMessage] = useState("");
     const [arrayIngredientes, setArrayIngredientes] = useState([]);
     const [arrayPreparation, setArrayPreparation] = useState([]);
-    const [usuario, setUsuario] = useState({})
+
+
 
     const [checkComment, setCheckComment] = useState(false);
     const [comment, setComment] = useState("");
@@ -26,11 +27,12 @@ const Recipe = () => {
         setLoading(true)
         try {
             await newComment(id, { text: comment })
+            setMessage("Comentário enviado com sucesso.");
             await allComments(id);
             setComment("");
             setCheckComment(false);
         } catch (err) {
-            setMessage("algo deu errado");
+            setMessage(err.message);
 
         } finally {
             setLoading(false)
@@ -43,11 +45,9 @@ const Recipe = () => {
             setLoading(true)
             try {
                 await readRecipe(id);
-                setMessage("Aqui esta a receita")
-
 
             } catch (err) {
-                setMessage("algo deu errado")
+                setMessage(err.message)
             } finally {
                 setLoading(false)
             }
@@ -80,12 +80,12 @@ const Recipe = () => {
 
         const allComments2 = async () => {
             try {
-                await readRecipe(id);
+
 
                 await allComments(id)
 
             } catch (err) {
-                console.log({ message: err.message })
+                console.log(err.message)
             }
 
 
@@ -94,13 +94,15 @@ const Recipe = () => {
 
     }, [receita._id])
 
-
     return (
+
         <div key={receita.id} className={"recipeContainer"}>
-            {
+            {loading ? (<p>Aguarde...</p>) : (
+
                 receita &&
                 <div key={receita.id}>
                     <h2>{receita.title}</h2>
+                    {message && <p>{message}</p>}
                     <img src={receita.image} alt={receita.title}></img>
 
                     {
@@ -112,6 +114,7 @@ const Recipe = () => {
                     <Favorite idReceita={receita._id} />
 
                     <div className={'dados'}>
+
                         <h3>Usuário:</h3>
                         <p>{receita.user?.name}</p>
                         <Link to={`/users/${receita.user?._id}`}>Perfil</Link>
@@ -185,10 +188,11 @@ const Recipe = () => {
 
                 </div>
 
-            }
+            )}
 
 
         </div>
+
     )
 }
 

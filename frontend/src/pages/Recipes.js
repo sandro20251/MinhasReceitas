@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRecipes } from "../services/useRecipes";
 
 const Recipes = () => {
-    const {createRecipes} = useRecipes();
+    const { createRecipes } = useRecipes();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
@@ -16,7 +16,18 @@ const Recipes = () => {
 
     const handleCreate = async (e) => {
         e.preventDefault();
-        
+
+        if (
+            !title ||
+            !description ||
+            !category ||
+            !ingredients ||
+            !preparation
+        ) {
+            setMessage("Todos os campos são obrigatórios.");
+            return;
+        }
+
         const recipe = {
             title,
             description,
@@ -26,9 +37,9 @@ const Recipes = () => {
 
 
         }
-       
+
         setLoading(true)
-         
+
         try {
             await createRecipes(recipe)
             setTitle("")
@@ -40,7 +51,7 @@ const Recipes = () => {
             setMessage("Receita criada com sucesso!")
 
             return;
-            console.log("entrou aqui")
+
         } catch (err) {
             setMessage(err.message)
             return;
@@ -81,13 +92,16 @@ const Recipes = () => {
                 </label>
                 <label>
                     Categoria:
-                    <input
-                        type="text"
-                        name="category"
-                        placeholder="Qual a categoria da receita?"
-                        onChange={(e) => setCategory(e.target.value)}
-                        value={category}
-                    />
+                    <select name="category" onChange={(e) => setCategory(e.target.value)} value={category}>
+                        <option value="Doces">Doces</option>
+                        <option value="Salgados">Salgados</option>
+                        <option value="Bebidas">Bebidas</option>
+                        <option value="Massas">Massas</option>
+                        <option value="Carnes">Carnes</option>
+                        <option value="Lanches">Lanches</option>
+                        <option value="Sobremesas">Sobremesas</option>
+                    </select>
+
                 </label>
                 <label>
                     Ingredientes:

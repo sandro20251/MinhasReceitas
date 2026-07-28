@@ -9,6 +9,11 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+
+        if (!email || !password) {
+            setMessage("Preencha todos os campos");
+            return;
+        }
         const user = {
             email,
             password
@@ -16,7 +21,7 @@ const Login = () => {
         setLoading(true)
         try {
             const response = await logar(user);
-            console.log(response)
+
             localStorage.setItem('token', response.token);
             localStorage.setItem('user', JSON.stringify(response.user));
             setMessage(response.message);
@@ -45,7 +50,7 @@ const Login = () => {
                     <input type="password" name="password" placeholder="Digite sua senha" onChange={(e) => setPassword(e.target.value)} value={password} />
                 </label>
                 {
-                    loading ? (<button type="submit" value="..." disabled>Logar</button>) : (<button type="submit">Logar</button>)
+                    loading ? (<button type="submit" disabled>Entrando...</button>) : (<button type="submit">Logar</button>)
                 }
 
             </form>
