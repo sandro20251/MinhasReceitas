@@ -7,6 +7,12 @@ const authorization = require('../helpers/authorization');
 router.post('/', authorization, recipeContorller.create);
 // listar receitas
 router.get('/', recipeContorller.readall);
+// pesquisar receita por titulo
+router.get('/portitulo', recipeContorller.searchTitle);
+// buscar por categoria
+router.get('/category', recipeContorller.searchCategory);
+// mostrar as rceitas pelas que tem mais curtidas
+router.get('/maisCurtidas', recipeContorller.moreLikes);
 // receitas por usuario
 router.get('/ByUser/:idUsuario', recipeContorller.recipesByUser);
 // buscar receita
@@ -29,6 +35,7 @@ router.get('/:idRecipe/comments', authorization, recipeContorller.allComments);
 router.post('/:idRecipe/favorite', authorization, recipeContorller.addFavorite);
 // retirar dos favoritos
 router.delete('/:idRecipe/favorite', authorization, recipeContorller.removeFavorite);
+
 
 
 

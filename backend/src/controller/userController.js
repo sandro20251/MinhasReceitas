@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const createToken = require('../helpers/createToken');
 const mongoose = require('mongoose');
 const Favorite = require('../models/Favorite');
-const { updateSearchIndex } = require('../models/Comments');
+
 module.exports = class UserController {
 
     // cadastro
@@ -12,21 +12,21 @@ module.exports = class UserController {
         const { name, email, password, conf } = req.body;
 
         if (!name) {
-            res.status(422).json({ message: "O campo nome é obrigatório" });
+            res.status(422).json({ message: "Digite o usuário" });
             return;
         }
 
         if (!email) {
-            res.status(422).json({ message: "O campo email é obrigatório" });
+            res.status(422).json({ message: "O email é obrigatório" });
             return;
         }
 
         if (!password) {
-            res.status(422).json({ message: "O campo password é obrigatório" });
+            res.status(422).json({ message: "A senha é obrigatória" });
             return;
         }
         if (!conf) {
-            res.status(422).json({ message: "O campo conf é obrigatório" });
+            res.status(422).json({ message: "O A confirmação de senha é obrigatória" });
             return;
         }
 
@@ -59,7 +59,7 @@ module.exports = class UserController {
         })
 
         try {
-            const novoUser = await user.save();
+            await user.save();
             return res.status(201).json({ message: "Cadastro concluído com sucesso" });
 
         } catch (err) {
@@ -77,7 +77,7 @@ module.exports = class UserController {
             return;
         }
         if (!password) {
-            res.status(422).json({ message: "O campo password é obrigatório" });
+            res.status(422).json({ message: "A senha é obrigatória" });
             return;
         }
         if (!emailRegex.test(email)) {
@@ -144,7 +144,8 @@ module.exports = class UserController {
             res.status(200).json(user);
             return;
         } catch (err) {
-            ser.status(500).json({ message: err.message })
+            res.status(500).json({ message: err.message });
+            return;
         }
     }
 

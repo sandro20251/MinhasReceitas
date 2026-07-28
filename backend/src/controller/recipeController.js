@@ -11,27 +11,27 @@ module.exports = class recipeController {
         const { title, description, category, ingredients, preparation } = req.body;
 
         if (!title) {
-            res.status(422).json({ message: "Campo title não encontrado" });
+            res.status(422).json({ message: "O título da receita é obrigatório" });
             return;
         }
 
         if (!description) {
-            res.status(422).json({ message: "Campo description não encontrado" });
+            res.status(422).json({ message: "A descrição da receita é obrigatória" });
             return;
         }
 
         if (!category) {
-            res.status(422).json({ message: "Campo category não encontrado" });
+            res.status(422).json({ message: "A categoria da receita é obrigatória" });
             return;
         }
 
         if (!ingredients) {
-            res.status(422).json({ message: "Campo ingredients não encontrado" });
+            res.status(422).json({ message: "Os ingredientes são obrigatórios" });
             return;
         }
 
         if (!preparation) {
-            res.status(422).json({ message: "Campo preparation não encontrado" });
+            res.status(422).json({ message: "O modo de preparo é obrigatório" });
             return;
         }
 
@@ -72,12 +72,12 @@ module.exports = class recipeController {
         const id = req.params.id;
 
         if (!id) {
-            res.status(404).json({ message: "id não encontrado" });
+            res.status(404).json({ message: "ID não encontrado" });
             return;
         }
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            res.status(422).json({ message: "id inválido" });
+            res.status(422).json({ message: "ID inválido" });
             return;
 
         }
@@ -99,27 +99,27 @@ module.exports = class recipeController {
         const { title, description, category, ingredients, preparation } = req.body;
 
         if (!title) {
-            res.status(422).json({ message: "Campo title não encontrado" });
+            res.status(422).json({ message: "O título da receita é obrigatório" });
             return;
         }
 
         if (!description) {
-            res.status(422).json({ message: "Campo descritpion não encontrado" });
+            res.status(422).json({ message: "A descrição da receita é obrigatória" });
             return;
         }
 
         if (!category) {
-            res.status(422).json({ message: "Campo category não encontrado" });
+            res.status(422).json({ message: "A categoria da receita é obrigatória" });
             return;
         }
 
         if (!ingredients) {
-            res.status(422).json({ message: "Campo ingredients não encontrado" });
+            res.status(422).json({ message: "Os ingredientes são obrigatórios" });
             return;
         }
 
         if (!preparation) {
-            res.status(422).json({ message: "Campo preparation não encontrado" });
+            res.status(422).json({ message: "O modo de preparo é obrigatório" });
             return;
         }
 
@@ -128,12 +128,12 @@ module.exports = class recipeController {
         const id = req.params.id;
 
         if (!id) {
-            res.status(404).json({ message: "id não encontrado" });
+            res.status(404).json({ message: "ID não encontrado" });
             return;
         }
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            res.status(422).json({ message: "id inválido" });
+            res.status(422).json({ message: "ID inválido" });
             return;
 
         }
@@ -150,7 +150,7 @@ module.exports = class recipeController {
         const user = req.user;
 
         if (user.id !== usuarioReceita) {
-            res.status(422).json({ message: "Você não é o autor da receita então não pode alterar ela" });
+            res.status(422).json({ message: "Você não tem permissão para alterar esta receita" });
             return;
         }
 
@@ -166,7 +166,7 @@ module.exports = class recipeController {
         try {
 
             await Recipe.updateOne({ _id: id }, receita);
-            res.status(201).json({ message: "Receita alterada com sucesso!" })
+            res.status(200).json({ message: "Receita alterada com sucesso!" })
 
         } catch (err) {
             res.status(500).json({ message: err.message });
@@ -178,12 +178,12 @@ module.exports = class recipeController {
         const id = req.params.id;
 
         if (!id) {
-            res.status(404).json({ message: "id não encontrado" });
+            res.status(404).json({ message: "ID não encontrado" });
             return;
         }
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            res.status(422).json({ message: "id inválido" });
+            res.status(422).json({ message: "ID inválido" });
             return;
 
         }
@@ -198,7 +198,7 @@ module.exports = class recipeController {
         const user = req.user;
 
         if (user.id !== usuarioReceita) {
-            res.status(422).json({ message: "Você não é o autor da receita então não pode excluir ela" });
+            res.status(422).json({ message: "Você não tem permissão para excluir esta receita" });
             return;
         }
 
@@ -221,7 +221,7 @@ module.exports = class recipeController {
         console.log(idUsuario)
 
         if (!mongoose.Types.ObjectId.isValid(idUsuario)) {
-            res.status(422).json({ message: "id inválido" });
+            res.status(422).json({ message: "ID inválido" });
             return;
         }
 
@@ -250,7 +250,7 @@ module.exports = class recipeController {
         const idReceita = req.params.idReceita;
 
         if (!mongoose.Types.ObjectId.isValid(idReceita)) {
-            res.status(422).json({ message: "Id inválido" });
+            res.status(422).json({ message: "ID inválido" });
             return;
         }
 
@@ -287,7 +287,7 @@ module.exports = class recipeController {
 
         try {
             const curtir = await like.save();
-            res.status(201).json({ message: "Receita curtida" });
+            res.status(201).json({ message: "Receita curtida com sucesso." });
 
             return;
         } catch (err) {
@@ -303,14 +303,14 @@ module.exports = class recipeController {
         const idReceita = req.params.idReceita;
 
         if (!mongoose.Types.ObjectId.isValid(idReceita)) {
-            res.status(422).json({ message: "Id inválido" });
+            res.status(422).json({ message: "ID inválido" });
             return;
         }
 
         const receita = await Recipe.findById(idReceita);
 
         if (!receita) {
-            res.status(404).json({ mensagem: "Nenhuma receita encontrada" });
+            res.status(404).json({ menssage: "Nenhuma receita encontrada" });
             return;
 
         }
@@ -332,7 +332,7 @@ module.exports = class recipeController {
                 userId: idUser,
                 recipeId: idReceita
             });
-            res.status(201).json({ message: "Deslike na receita" });
+            res.status(201).json({ message: "Curtida removida com sucesso." });
             return;
         } catch (err) {
             res.status(500).json({ message: err.message });
@@ -347,7 +347,7 @@ module.exports = class recipeController {
         const idReceita = req.params.idReceita;
 
         if (!mongoose.Types.ObjectId.isValid(idReceita)) {
-            res.status(422).json({ message: "Id inválido" });
+            res.status(422).json({ message: "ID inválido" });
             return;
         }
 
@@ -379,7 +379,7 @@ module.exports = class recipeController {
         const idRecipe = req.params.idRecipe;
 
         if (!mongoose.Types.ObjectId.isValid(idRecipe)) {
-            res.status(422).json({ message: "Id inválido" });
+            res.status(422).json({ message: "ID inválido" });
             return;
         }
 
@@ -393,7 +393,7 @@ module.exports = class recipeController {
         const { text } = req.body;
 
         if (!text) {
-            res.status(422).json({ message: "Precisamos do texto para dar continuidade ao comentario" });
+            res.status(422).json({ message: "Digite um comentário antes de enviar." });
             return;
         }
 
@@ -421,7 +421,7 @@ module.exports = class recipeController {
             const idRecipe = req.params.idRecipe;
 
             if (!mongoose.Types.ObjectId.isValid(idRecipe)) {
-                res.status(422).json({ message: "Id inválido" });
+                res.status(422).json({ message: "ID inválido" });
                 return;
             }
 
@@ -447,7 +447,7 @@ module.exports = class recipeController {
         try {
             const userId = req.user.id;
             const idRecipe = req.params.idRecipe;
-            
+
             const exists = await Favorite.findOne({
                 user: userId,
                 recipe: idRecipe
@@ -459,7 +459,7 @@ module.exports = class recipeController {
                 });
             }
             if (!mongoose.Types.ObjectId.isValid(idRecipe)) {
-                res.status(422).json({ message: "Id inválido" });
+                res.status(422).json({ message: "ID inválido" });
                 return;
             }
 
@@ -490,7 +490,7 @@ module.exports = class recipeController {
             const idRecipe = req.params.idRecipe;
 
             if (!mongoose.Types.ObjectId.isValid(idRecipe)) {
-                res.status(422).json({ message: "Id inválido" });
+                res.status(422).json({ message: "ID inválido" });
                 return;
             }
 
@@ -505,11 +505,56 @@ module.exports = class recipeController {
                 user: userId,
                 recipe: idRecipe
             });
-            res.status(200).json({ message: "receita desfavoritada com sucesso" });
+            res.status(200).json({ message: "Receita removida dos favoritos com sucesso." });
 
         } catch (err) {
             res.status(500).json({ message: err.message });
             return;
         }
+    }
+
+    static searchTitle = async (req, res) => {
+        const { titleSearch } = req.query;
+
+        if (!titleSearch) {
+            return res.status(422).json({
+                message: "Informe um título para pesquisa."
+            });
+        }
+
+        try {
+            const recipe = await Recipe.find({
+
+                title: {
+                    $regex: titleSearch,
+                    $options: "i"
+                }
+            });
+
+            return res.status(200).json(recipe);
+
+        } catch (err) {
+            return res.status(500).json({
+                message: err.message
+            });
+        }
+    }
+
+    static searchCategory = async (req, res) => {
+        const { category } = req.query;
+
+        try {
+            const receitas = await Recipe.find({
+                category: category
+            })
+            return res.status(200).json(receitas);
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+            return;
+        }
+    }
+
+    static moreLikes = async (req, res) => {
+
     }
 }

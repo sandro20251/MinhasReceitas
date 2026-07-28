@@ -13,7 +13,10 @@ const Register = () => {
     const handleCreateRegister = async (e) => {
 
         e.preventDefault();
-
+        if (!name || !email || !password || !conf) {
+            setMessage("Preencha todos os campos.");
+            return;
+        }
         const objeto = {
             name,
             email,
@@ -36,7 +39,7 @@ const Register = () => {
 
         } catch (err) {
 
-            setMessage("Requisição recusada, algum erro ocorreu");
+            setMessage(err.message);
             console.log(err)
         } finally {
 
