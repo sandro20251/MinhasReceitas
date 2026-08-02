@@ -217,7 +217,7 @@ const Recipe = () => {
             <div className="divisao10">
                 <div className="imagemReceita">
                     <img
-                        src={`${process.env.REACT_APP_URL_RECIPES}/uploads${receita.image}`}
+                        src={`${process.env.REACT_APP_URL}${receita.image}`}
                         alt={receita.title}
                     />
                 </div>
