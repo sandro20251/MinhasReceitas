@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Curtidas from '../components/Curtidas';
-import { useState } from 'react';
+
 import Comment from './Comment';
 import './RecipeCard.css';
 

@@ -1,4 +1,4 @@
-import { useParams, useSearchParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { usePessoa } from '../services/usePessoa';
 import { useRecipes } from "../services/useRecipes";
 import RecipeCard from '../components/RecipeCard';

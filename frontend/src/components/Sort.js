@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import '../styles/inputs.css';
 
 const Sort = ({ filtro, setFiltro, ordenacao, setOrdenacao, tempo, setTempo, handleFiltros, handleTempo }) => {
