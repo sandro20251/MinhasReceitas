@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 // Componente que mostra a página de usuário
 const UserProfile = () => {
     const [avatar, setAvatar] = useState(null);
-    const navigate = useNavigate()
+   
     const [usuario, setUsuario] = useState({});
     const [receitas, setReceitas] = useState([]);
 
