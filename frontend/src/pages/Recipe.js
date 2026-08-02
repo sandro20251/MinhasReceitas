@@ -217,7 +217,7 @@ const Recipe = () => {
             <div className="divisao10">
                 <div className="imagemReceita">
                     <img
-                        src={`http://localhost:5000${receita.image}`}
+                        src={`${process.env.REACT_APP_URL_BACKEND}${receita.image}`}
                         alt={receita.title}
                     />
                 </div>
@@ -321,7 +321,7 @@ const Recipe = () => {
                                                         <img
                                                             src={
                                                                 receita.user?.avatar
-                                                                    ? `http://localhost:5000/uploads/${receita.user?.avatar}`
+                                                                    ? `${process.env.REACT_APP_URL_BACKEND}/uploads/${receita.user?.avatar}`
                                                                     : "/avatarPadrao.png"
                                                             }
                                                             alt="Avatar"
@@ -368,7 +368,7 @@ const Recipe = () => {
                                             </div>
 
                                                 <div className="parte1">
-                                                    <button onClick={handleAbrirAlterar}  className="starButton">✏️</button>
+                                                    <button onClick={handleAbrirAlterar} className="starButton">✏️</button>
                                                     {
                                                         confExclusao ? (confExclusao && <div>
                                                             <p>Tem certeza que deseja excluir esta receita?</p>
@@ -423,7 +423,7 @@ const Recipe = () => {
                                         <img
                                             src={
                                                 item.user.avatar
-                                                    ? `http://localhost:5000/uploads/${item.user.avatar}`
+                                                    ? `${process.env.REACT_APP_URL_BACKEND}/uploads/${item.user.avatar}`
                                                     : "/avatarPadrao.png"
                                             }
                                             alt="Avatar"
