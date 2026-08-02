@@ -11,6 +11,7 @@ import pave from '../styles/pave2.jpg';
 
 // Página inicial
 const Home = () => {
+    console.log("renderizou home")
     const [recipes, setRecipes] = useState([])
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
