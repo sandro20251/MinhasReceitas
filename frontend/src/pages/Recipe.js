@@ -368,7 +368,7 @@ const Recipe = () => {
                                             </div>
 
                                                 <div className="parte1">
-                                                    <button onClick={handleAbrirAlterar} className="botoesContainer" className="starButton">✏️</button>
+                                                    <button onClick={handleAbrirAlterar}  className="starButton">✏️</button>
                                                     {
                                                         confExclusao ? (confExclusao && <div>
                                                             <p>Tem certeza que deseja excluir esta receita?</p>
