@@ -1,17 +1,22 @@
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams, Link } from "react-router-dom";
 import { usePessoa } from '../services/usePessoa';
 import { useRecipes } from "../services/useRecipes";
 import RecipeCard from '../components/RecipeCard';
+import { useNavigate } from "react-router-dom";
+import './UserProfile.css'
+
 
 import { useEffect, useState } from "react";
 
 const UserProfile = () => {
+    const [avatar, setAvatar] = useState(null);
+    const navigate = useNavigate()
     const [usuario, setUsuario] = useState({});
     const [receitas, setReceitas] = useState([]);
 
     const { id } = useParams();
-   
-    const { getPessoa } = usePessoa();
+
+    const { getPessoa, uploadAvatar } = usePessoa();
     const { recipeByUser } = useRecipes();
 
     useEffect(() => {
@@ -29,20 +34,71 @@ const UserProfile = () => {
         }
         lerReceitas();
     }, [id])
-    
-    return (
-        <div>
 
-            <h2>{usuario.name}</h2>
-            <img src={usuario.image} alt={usuario.name} />
-            <h3>{usuario.email}</h3>
-            <hr></hr>
-            <div>
+    const handleUploadAvatar = async (file) => {
+        if (!avatar) {
+            alert("Selecione uma imagem.");
+            return;
+        }
+
+        try {
+
+            const response = await uploadAvatar(avatar);
+
+            setUsuario({
+                ...usuario,
+                avatar: response.avatar
+            });
+
+            alert(response.message);
+
+        } catch (err) {
+
+            alert(err.message);
+
+        }
+    }
+
+    return (
+        <div className="perfilContainer">
+            <div className="avatarContainer">
+                <img
+                    src={
+                        usuario.avatar
+                            ? `http://localhost:5000/uploads/${usuario.avatar}`
+                            : "/avatarPadrao.png"
+                    }
+                    alt="Avatar"
+                    className="avatarImage"
+                />
+            </div>
+            <div className="apresentacao">
+                <h2><span>{usuario.name}</span></h2>
+
+                <h3>{usuario.email}</h3>
+                <hr></hr>
+                <Link to="/deleteUser"><span>Excluir conta</span></Link>
+
+                
+            </div>
+            <div className="addFotoPerfil">
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setAvatar(e.target.files[0])}
+                />
+                <button onClick={() => handleUploadAvatar(avatar)} className="botoesContainer">
+                    Salvar foto
+                </button>
+            </div>
+            <h2><span>Minhas receitas:</span></h2>
+
+            <div className="perfilWrap">
                 {
                     receitas.map((item) => {
                         return (
                             <div key={item._id}>
-                                <RecipeCard id={item._id} title={item.title} category={item.category} description={item.description} user={item.user} />
+                                <RecipeCard id={item._id} title={item.title} category={item.category} description={item.description} user={item.user} image={item.image}/>
                                 <hr></hr>
                             </div>
                         )

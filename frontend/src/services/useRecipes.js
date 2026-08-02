@@ -2,7 +2,8 @@ import { useState } from "react";
 
 const url = process.env.REACT_APP_URL_RECIPES;
 const url2 = process.env.REACT_APP_URL_RECEITASUSUARIOS;
-const token = localStorage.getItem('token');
+
+
 
 
 const useRecipes = () => {
@@ -18,13 +19,23 @@ const useRecipes = () => {
     const createRecipes = async (objeto) => {
 
         const token = localStorage.getItem("token");
+
+        const formData = new FormData();
+
+        formData.append("title", objeto.title);
+        formData.append("description", objeto.description);
+        formData.append("category", objeto.category);
+        formData.append("ingredients", objeto.ingredients);
+        formData.append("preparation", objeto.preparation);
+        formData.append("image", objeto.image);
+
         const res = await fetch(url, {
             method: 'POST',
             headers: {
-                "content-type": "application/json",
-                "authorization": `Bearer ${token}`
+                
+                authorization: `Bearer ${token}`
             },
-            body: JSON.stringify(objeto)
+            body: formData
         })
 
         const json = await res.json();
@@ -37,6 +48,7 @@ const useRecipes = () => {
     }
 
     const readRecipe = async (id) => {
+        const token = localStorage.getItem('token');
         const res = await fetch(`${url}/${id}`, {
             headers: {
                 "authorization": `Bearer ${token}`
@@ -48,6 +60,7 @@ const useRecipes = () => {
     }
 
     const recipeByUser = async (id) => {
+        const token = localStorage.getItem('token');
         const res = await fetch(`${url2}/${id}`, {
             headers: {
                 authorization: `Bearer ${token}`
@@ -59,6 +72,7 @@ const useRecipes = () => {
     }
 
     const LikeService = async (idRecipe) => {
+        const token = localStorage.getItem('token');
         const res = await fetch(`${url}/${idRecipe}/like`, {
             method: "POST",
             headers: {
@@ -77,6 +91,7 @@ const useRecipes = () => {
     }
 
     const DeslikeService = async (idRecipe) => {
+        const token = localStorage.getItem('token');
         const res = await fetch(`${url}/${idRecipe}/like`, {
             method: 'DELETE',
             headers: {
@@ -91,12 +106,12 @@ const useRecipes = () => {
     }
 
     const CountLike = async (idRecipe) => {
-        const token = localStorage.getItem("token");
+        // const token = localStorage.getItem("token");
 
         const res = await fetch(`${url}/${idRecipe}/count`, {
             headers: {
                 "content-type": "application/json",
-                authorization: `Bearer ${token}`
+                // Authorization: `Bearer ${token}`
             }
         })
 
@@ -192,13 +207,96 @@ const useRecipes = () => {
 
     const searchCategory = async (busca) => {
         const res = await fetch(`${url}/category?category=${busca}`);
-      
+
         const json = await res.json();
         return json;
 
     }
 
-    return { createRecipes, lerReceita, readRecipe, recipeByUser, LikeService, DeslikeService, CountLike, newComment, allComments, addFavorite, removeFavorite, searchTitle, searchCategory, receita, comentarios }
+    const deleteRecipe = async (id) => {
+
+        const token = localStorage.getItem('token');
+
+        const res = await fetch(`${url}/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+
+            }
+        })
+
+        const json = await res.json();
+        if (!res.ok) {
+            throw new Error(json.message);
+        }
+
+        return json;
+    }
+
+    const updateRecipes = async (id, objeto) => {
+
+        const token = localStorage.getItem('token');
+        const res = await fetch(`${url}/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(objeto)
+        })
+
+        const json = await res.json();
+
+        if (!res.ok) {
+            throw new Error(json.message);
+        }
+        return json;
+    }
+
+    const updateComment = async (id, objeto) => {
+
+
+        const res = await fetch(`${url}/${id}/comments`, {
+            method: "PATCH",
+            headers: {
+                "Content-type": "application/json",
+
+            },
+            body: JSON.stringify(objeto)
+
+        })
+
+        const json = await res.json();
+        console.log(json)
+        if (!res.ok) {
+            throw new Error(json.message);
+        }
+        return json;
+    }
+
+    const deleteComment = async (id) => {
+
+        const token = localStorage.getItem('token');
+
+        const res = await fetch(`${url}/${id}/comments`, {
+            method: "DELETE",
+            headers: {
+                "Content-type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        })
+
+        const json = await res.json();
+
+        if (!res.ok) {
+            throw new Error(json.message);
+        }
+        return json;
+    }
+
+
+
+    return { setReceita, createRecipes, lerReceita, readRecipe, recipeByUser, LikeService, DeslikeService, CountLike, newComment, allComments, addFavorite, removeFavorite, searchTitle, searchCategory, deleteRecipe, updateRecipes, updateComment, receita, comentarios, deleteComment }
 }
 
 

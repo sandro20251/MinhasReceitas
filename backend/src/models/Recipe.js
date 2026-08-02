@@ -8,7 +8,10 @@ const Recipe = mongoose.model('Recipe', new Schema({
     category: { type: String, required: true },
     ingredients: { type: String },
     preparation: { type: String },
-    image: { type: String },
+    image: {
+        type: String,
+        default: null
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"

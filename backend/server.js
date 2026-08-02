@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const connect = require('./src/dataBase/connection');
 require('dotenv').config();
+const path = require("path");
 
 const porta = process.env.PORTA || 5000;
 const app = express();
@@ -11,7 +12,10 @@ app.use(express.json());
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
-
+app.use(
+    "/uploads",
+    express.static(path.join(__dirname, "uploads"))
+);
 
 // rotas
 

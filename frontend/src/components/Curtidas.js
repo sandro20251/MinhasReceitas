@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { useRecipes } from "../services/useRecipes";
-
+import '../styles/botoes.css'
+import '../components/Curtidas.css';
 
 
 const Curtidas = ({ idReceita }) => {
-    
+
     const [loading, setLoading] = useState(false);
     const [message2, setMessage2] = useState("");
     const [curtidas, setCurtidas] = useState(0);
 
-
+    const [estadoCurtida, setEstadoCurtida] = useState(false);
 
     const { LikeService, DeslikeService, CountLike } = useRecipes();
 
@@ -22,7 +23,7 @@ const Curtidas = ({ idReceita }) => {
     }
 
     const handleCurtir = async () => {
-
+        setEstadoCurtida(true)
         setLoading(true);
         try {
             await LikeService(idReceita);
@@ -38,6 +39,7 @@ const Curtidas = ({ idReceita }) => {
     }
 
     const handleDescurtir = async () => {
+        setEstadoCurtida(false)
         setLoading(true);
         try {
             await DeslikeService(idReceita);
@@ -59,18 +61,13 @@ const Curtidas = ({ idReceita }) => {
 
 
     return (
-        <div>
+        <div className="curtidasContainer">
             {
-                message2 && <p>{message2}</p>
+                estadoCurtida ? (<button onClick={handleDescurtir} className="heartButton"> ❤️</button> ):(<button onClick={handleCurtir} className="heartButton"> ❤️</button>)
             }
+          
             <div>
-                <button onClick={handleCurtir}>Curtir</button>
-            </div>
-            <div>
-                <button onClick={handleDescurtir}>Descurtir</button>
-            </div>
-            <div>
-                <p><span>Curtidas: {curtidas}</span></p>
+                <p>{curtidas}</p>
             </div>
         </div>
     )

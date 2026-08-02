@@ -1,0 +1,49 @@
+.recipeContainer2 {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 auto;
+}
+
+.labelContainer2 {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+span {
+    color: #ff6835;
+}
+
+.recipeContainer2 h2 {
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.fotoReceita {
+
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #eee;
+
+}
+
+@media(max-width:425px) {
+    .fotoReceita {
+        display: flex;
+        flex-direction: column;
+       
+    }
+
+    .fotoReceita input{
+        display: flex;
+        flex-direction: column;
+        font-size: 10px;
+    }
+}

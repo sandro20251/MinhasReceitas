@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useRecipes } from "../services/useRecipes";
+import '../components/Favorite.css';
 
 const Favorite = ({ idReceita }) => {
     const [btnAtivo, setBtnAtivo] = useState(false);
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
     const { addFavorite, removeFavorite } = useRecipes();
+    const [estadoFavorito, setEstadoFavorito] = useState(false);
 
     const handleFavoritar = async () => {
+        setEstadoFavorito(true)
         setBtnAtivo(true);
         setLoading(true)
         try {
@@ -22,6 +25,7 @@ const Favorite = ({ idReceita }) => {
 
     }
     const handleDesfavoritar = async () => {
+        setEstadoFavorito(false)
         setBtnAtivo(false);
         setLoading(true)
         try {
@@ -35,13 +39,18 @@ const Favorite = ({ idReceita }) => {
         }
     }
     return (
-        <div>
-            {
-                message &&
-                <p>{message}</p>
-            }
-            <button onClick={handleDesfavoritar}>Desfavoritar</button>
-            <button onClick={handleFavoritar}>Favoritar</button>
+        <div className="favoriteContainer">
+            <div>
+                {
+                    estadoFavorito && <p>Em favoritos</p>
+                }
+
+            </div>
+            <div>
+                {
+                    estadoFavorito ? (<button onClick={handleDesfavoritar} className="starButton2">⭐</button>) : (<button onClick={handleFavoritar} className="starButton">⭐</button>)
+                }
+            </div>
 
 
 

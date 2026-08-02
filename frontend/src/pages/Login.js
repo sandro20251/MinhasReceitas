@@ -1,17 +1,28 @@
 import { useState } from "react";
 import { logar } from '../services/useLogin';
-
+import '../styles/botoes.css';
+import '../styles/inputs.css';
+import './Login.css';
+import  {Link } from "react-router-dom";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
 
+    const createMessage = (message) => {
+        setTimeout(() => {
+            setMessage(message)
+        }, 5000)
+    }
+
+
+
     const handleLogin = async (e) => {
         e.preventDefault();
 
         if (!email || !password) {
-            setMessage("Preencha todos os campos");
+            createMessage("❌ Preencha todos os campos");
             return;
         }
         const user = {
@@ -24,10 +35,10 @@ const Login = () => {
 
             localStorage.setItem('token', response.token);
             localStorage.setItem('user', JSON.stringify(response.user));
-            setMessage(response.message);
+            createMessage("✅ Login realizado com sucesso.");
             return;
         } catch (err) {
-            setMessage(err.message);
+            createMessage(err.message);
             return;
         } finally {
             setLoading(false)
@@ -35,25 +46,46 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <h1>Faça seu login</h1>
-            {
-                message && <p>{message}</p>
-            }
-            <form onSubmit={handleLogin}>
-                <label>
-                    Email:
-                    <input type="email" name="email" placeholder="Digite seu E-mail" onChange={(e) => setEmail(e.target.value)} value={email} />
-                </label>
-                <label>
-                    Senha:
-                    <input type="password" name="password" placeholder="Digite sua senha" onChange={(e) => setPassword(e.target.value)} value={password} />
-                </label>
+        <div className="loginContainer">
+            <div className="partea">
+                <h1>Minhas Receitas</h1>
+                <p>Minhas receitas é uma rede social dedicada ao mundo culinário.</p>
+                <p>Compartilhe suas receitas com seus amigos e aprenda novas formas de cozinhar</p>
+                <p>Aproveite para conhecer as receitas de seus amigos!</p>
+            </div>
+            <div className="parteb">
+                <h1>Faça seu login</h1>
                 {
-                    loading ? (<button type="submit" disabled>Entrando...</button>) : (<button type="submit">Logar</button>)
+                    message && <p>{message}</p>
                 }
+                <form onSubmit={handleLogin}>
+                    <div className="camposlogin">
+                        <label className="labelContainer">
+                            Email:
+                            <input type="email" name="email" placeholder="Digite seu E-mail" onChange={(e) => setEmail(e.target.value)} value={email} className="inputContainer" />
+                        </label>
+                    </div>
+                    <div className="camposlogin">
+                        <label className="labelContainer">
+                            Senha:
+                            <input type="password" name="password" placeholder="Digite sua senha" onChange={(e) => setPassword(e.target.value)} value={password} className="inputContainer" />
+                        </label>
+                    </div>
+                    <div className="botao">
+                        {
+                            loading ? (<button type="submit" disabled className="botoesContainer">Entrando...</button>) : (<button type="submit" className="botoesContainer">Entrar</button>)
+                        }
 
-            </form>
+                    </div>
+                    <div className="registroLogin">
+                        <p>Caso aninda não tenha se cadastrado:</p>
+                        <Link to="/register"><span>Registre-se aqui</span></Link>
+                    </div>
+
+
+                </form>
+            </div>
+
         </div>
 
     )

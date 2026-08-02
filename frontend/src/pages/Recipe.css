@@ -1,27 +1,136 @@
-.ingredientes {
+.labelContainer {
     display: flex;
     flex-direction: column;
-
 }
 
 .recipeContainer {
+    display: flex;
+    flex-direction: row;
     text-align: center;
-}
-
-.recipeContainer h2 {
     width: 80%;
-    margin-bottom: 10px;
-    border: 1px solid black;
-    border-radius: 10px;
     margin: 0 auto;
 }
 
+.divisao10 {
+    width: 50%;
+    min-height: 680px;
+    background-color: #f7f7f7;
+    margin: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
 
-.recipeContainer .dados {
-    width: 80%;
-    margin-bottom: 10px;
-    border: 1px solid black;
-    border-radius: 10px;
+}
+
+.divisao20 {
+    width: 50%;
+    min-height: 680px;
+    background-color: #f7f7f7;
+    margin: 10px;
+    border-radius: 8px;
     padding: 10px;
-    margin: 0 auto;
+
+}
+
+.imagemReceita {
+    height: 340px;
+    background-color: #eeeeee;
+    border-radius: 8px;
+}
+
+.imagemReceita img {
+    height: 340px;
+    width:100%
+}
+
+.divisao10 span {
+    color: #ff6835;
+
+
+}
+
+.acoes {
+    display: flex;
+    justify-content: center;
+}
+
+.comentario {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    gap: 5px;
+    margin: 10px;
+}
+
+.divisao10 h3 {
+    margin-top: 10px;
+
+}
+
+.comentario span {
+    color: #ff6835;
+
+}
+
+.dados {
+    padding: 10px;
+}
+
+.botoesComentario {
+    display: flex;
+    justify-content: center;
+}
+
+.parte1 {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.dadosprontos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fotoPerfil img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.fotoComentario img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.comentarioTexto{
+    font-weight: bold;
+}
+
+.org1{
+    display: flex;
+    flex-direction: column;
+}
+
+@media(max-width:768px){
+    .recipeContainer{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .divisao10 {
+        width: 100%;
+    }
+
+    .divisao20{
+        width: 100%;
+        min-height: 200px;
+    }
 }

@@ -1,0 +1,6 @@
+.favoriteContainer {
+    display: flex;
+    font-weight: bold;
+    gap: 10px;
+    color: #ff6835;
+}

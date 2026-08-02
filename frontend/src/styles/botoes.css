@@ -1,0 +1,36 @@
+.botoesContainer {
+    margin-top: 5px;
+    background-color: #ff6b35;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    color: #FFFFFF;
+    height: 30px;
+    width: 100px;
+    margin: 0 auto;
+    
+    transition: .5;
+    cursor: pointer;
+
+}
+
+.botoesContainer:hover {
+    background-color: #2d3748;
+}
+
+.heartButton {
+    border: none;
+    background-color: #FFFFFF;
+}
+
+.starButton {
+    background-color: #FFFFFF;
+    border: none;
+}
+
+.starButton2 {
+    background-color: #FFFFFF;
+    border: none;
+   
+}
+

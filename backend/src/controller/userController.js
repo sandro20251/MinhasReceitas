@@ -4,6 +4,11 @@ const bcrypt = require('bcrypt');
 const createToken = require('../helpers/createToken');
 const mongoose = require('mongoose');
 const Favorite = require('../models/Favorite');
+const Recipe = require('../models/Recipe');
+
+const Comments = require('../models/Comments');
+const Likes = require('../models/Like');
+
 
 module.exports = class UserController {
 
@@ -154,7 +159,7 @@ module.exports = class UserController {
         const userId = req.user.id;
 
         try {
-            const favoritos = await Favorite.find({ user: userId }).populate("recipe", "title description category id");
+            const favoritos = await Favorite.find({ user: userId }).populate("recipe", "title description category id image");
             res.status(200).json(favoritos);
             return;
         } catch (err) {
@@ -164,4 +169,73 @@ module.exports = class UserController {
 
     }
 
+    static delete = async (req, res) => {
+        const user = req.user;
+
+        try {
+
+            await Recipe.deleteMany({ user: user._id });
+            await Favorite.deleteMany({ user: user._id });
+            await Comments.deleteMany({ user: user._id });
+            await Likes.deleteMany({
+                recipeId: {
+                    $in: (await Recipe.find({ user: user._id })).map(r => r._id)
+                }
+            });
+            await User.deleteOne({ _id: user.id });
+            res.status(200).json({ message: "Usuário excluído com sucesso" });
+            return;
+        } catch (err) {
+            res.status(500).json(err.message);
+            return;
+        }
+
+
+    }
+
+
+
+    static uploadAvatar = async (req, res) => {
+
+        try {
+
+            if (!req.file) {
+                return res.status(422).json({
+                    message: "Envie uma imagem"
+                });
+            }
+
+            const userId = req.user.id;
+
+            const user = await User.findById(userId);
+
+            if (!user) {
+                return res.status(404).json({
+                    message: "Usuário não encontrado"
+                });
+            }
+
+            user.avatar = req.file.filename;
+
+            await user.save();
+
+            return res.status(200).json({
+                message: "Foto de perfil atualizada com sucesso",
+                avatar: user.avatar
+            });
+
+        } catch (err) {
+
+            console.log(err);
+
+            return res.status(500).json({
+                message: err.message
+            });
+
+        }
+
+    }
+
+
 }
+

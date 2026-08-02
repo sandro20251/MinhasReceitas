@@ -1,0 +1,39 @@
+.deleteContainer {
+    width: 80%;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+    min-height: 680px;
+
+}
+
+.deleteContainer h2,
+.deleteContainer p {
+    margin-bottom: 10px;
+}
+
+.span {
+    color: #ff6835;
+}
+
+.deleteBotao {
+    margin-right: 10px;
+}
+
+@media(max-width:425px) {
+    .deleteContainer {
+        min-height: 250px;
+    margin-right: 30px;
+        
+    }
+}
+
+@media(max-width:375px){
+    .deleteContainer {
+        margin-right: 27px;
+    }
+}

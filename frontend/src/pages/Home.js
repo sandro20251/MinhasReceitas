@@ -2,6 +2,12 @@ import { useEffect, useState } from 'react';
 import { useRecipes } from '../services/useRecipes';
 import RecipeCard from '../components/RecipeCard';
 import Sort from '../components/Sort';
+import '../styles/inputs.css'
+import './Home.css';
+import '../styles/botoes.css';
+import '../components/RecipeCard.css';
+import Recipes from '../pages/Recipes';
+import pave from '../styles/pave2.jpg';
 
 const Home = () => {
     const [recipes, setRecipes] = useState([])
@@ -16,13 +22,21 @@ const Home = () => {
     const [ordenacao, setOrdenacao] = useState("");
     const [tempo, setTempo] = useState("")
 
+
+    const createMessage = (message) => {
+        setMessage(message);
+        setTimeout(() => {
+            setMessage("")
+        }, 5000)
+    }
+
     const handleBuscar = async (busca) => {
         setLoading(true);
         try {
             const receitas2 = await searchTitle(busca);
             setRecipes(receitas2)
         } catch (err) {
-            setMessage(err.message);
+            createMessage(err.message);
             return;
         } finally {
             setLoading(false);
@@ -36,7 +50,7 @@ const Home = () => {
             const recipes = await searchCategory(value);
             setRecipes(recipes);
         } catch (err) {
-            setMessage(err.message)
+            createMessage(err.message)
         } finally {
             setLoading(false);
         }
@@ -49,7 +63,7 @@ const Home = () => {
                 const data = await lerReceita()
                 setRecipes(data)
             } catch (err) {
-                setMessage(err.message)
+                createMessage(err.message)
             } finally {
                 setLoading(false)
             }
@@ -104,56 +118,72 @@ const Home = () => {
 
     }
 
-    console.log(recipes)
+
     return (
-        <div>
-            <h1>Receitas da Comunidade</h1>
+        <div className='homeContainer'>
 
-            <p>Compartilhe suas melhores receitas.</p>
-            <div>
-                <input type="text" name="titleSearch" onChange={(e) => setBusca(e.target.value)} value={busca} />
-                <button onClick={() => handleBuscar(busca)}>Buscar</button>
-            </div>
-            <div>
-                <Sort filtro={filtro} setFiltro={setFiltro} ordenacao={ordenacao} setOrdenacao={setOrdenacao} tempo={tempo} setTempo={setTempo} handleFiltros={handleFiltros} handleTempo={handleTempo} />
-            </div>
-            <div>
-                <label>
-                    Filtrar por categoria:
-                    <select name="category" onChange={(e) => setCategory(e.target.value)} value={category}>
-                        <option value="">Selecione uma categoria</option>
-                        <option value="Doces">Doces</option>
-                        <option value="Salgados">Salgados</option>
-                        <option value="Bebidas">Bebidas</option>
-                        <option value="Massas">Massas</option>
-                        <option value="Carnes">Carnes</option>
-                        <option value="Lanches">Lanches</option>
-                        <option value="Sobremesas">Sobremesas</option>
-                    </select>
-                    <button onClick={() => handleFiltrar(category)}>Filtrar</button>
-                </label>
 
+            <div className='procurasContainer'>
+
+                <div>
+                    <input type="text" name="titleSearch" onChange={(e) => setBusca(e.target.value)} value={busca} className='inputContainer' />
+                    <button onClick={() => handleBuscar(busca)} className='botoesContainer'>Buscar</button>
+                </div>
+
+                <div>
+                    <label>
+
+                        <select name="category" onChange={(e) => setCategory(e.target.value)} value={category} className='inputContainer'>
+                            <option value="">Selecione uma categoria</option>
+                            <option value="Doces">Doces</option>
+                            <option value="Salgados">Salgados</option>
+                            <option value="Bebidas">Bebidas</option>
+                            <option value="Massas">Massas</option>
+                            <option value="Carnes">Carnes</option>
+                            <option value="Lanches">Lanches</option>
+                            <option value="Sobremesas">Sobremesas</option>
+                        </select>
+                        <button onClick={() => handleFiltrar(category)} className='botoesContainer'>Filtrar</button>
+                    </label>
+
+                </div>
+                <div>
+                    <Sort filtro={filtro} setFiltro={setFiltro} ordenacao={ordenacao} setOrdenacao={setOrdenacao} tempo={tempo} setTempo={setTempo} handleFiltros={handleFiltros} handleTempo={handleTempo} />
+                </div>
             </div>
-            {
-                message && <p>{message}</p>
-            }
-            {
-                loading ? (<p>Aguarde ...</p>) :
-                    (
-                        (
-                            recipes.map((item) => {
-                                return (
-                                    <div key={item._id}>
-                                        <RecipeCard title={item.title} description={item.description} category={item.category} user={item.user} image={image} id={item._id} />
-                                        <hr></hr>
-                                    </div>
+            <div className='banner'>
+                <img src={pave} alt="pavê"></img>
+            </div>
+            <div className='corpoPrincipal'>
+                <div className='esquerda'>
+
+
+                    <Recipes />
+                </div>
+                <div className='direita'>
+                    {
+                        message && <p>{message}</p>
+                    }
+                    {
+                        loading ? (<p>Aguarde ...</p>) :
+                            (
+                                (
+                                    recipes.map((item) => {
+                                        return (
+                                            <div key={item._id} className='recipeMaster'>
+                                                <RecipeCard title={item.title} description={item.description} category={item.category} user={item.user} image={item.image} id={item._id} />
+
+                                            </div>
+                                        )
+
+
+                                    })
                                 )
+                            )
+                    }
+                </div>
+            </div>
 
-
-                            })
-                        )
-                    )
-            }
 
         </div>
     )

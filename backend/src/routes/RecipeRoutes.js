@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const recipeContorller = require('../controller/recipeController');
 const authorization = require('../helpers/authorization');
+const upload = require("../middlewares/upload");
 
 // criar receita
-router.post('/', authorization, recipeContorller.create);
+router.post('/', authorization, upload.single("image"), recipeContorller.create);
 // listar receitas
 router.get('/', recipeContorller.readall);
 // pesquisar receita por titulo
@@ -26,7 +27,7 @@ router.post('/:idReceita/like', authorization, recipeContorller.like);
 // descurtidno receitas
 router.delete('/:idReceita/like', authorization, recipeContorller.deslike);
 // contar Curtidas
-router.get('/:idReceita/count', authorization, recipeContorller.count);
+router.get('/:idReceita/count', recipeContorller.count);
 // comentar receita
 router.post('/:idRecipe/comments', authorization, recipeContorller.createComment);
 // buscar comentários da receita
@@ -35,7 +36,10 @@ router.get('/:idRecipe/comments', authorization, recipeContorller.allComments);
 router.post('/:idRecipe/favorite', authorization, recipeContorller.addFavorite);
 // retirar dos favoritos
 router.delete('/:idRecipe/favorite', authorization, recipeContorller.removeFavorite);
-
+// alterar comentario
+router.patch('/:idComment/comments', recipeContorller.updateComment);
+// excluir comentário
+router.delete('/:idComment/comments', authorization, recipeContorller.deleteComment);
 
 
 

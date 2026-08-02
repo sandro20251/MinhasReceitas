@@ -1,0 +1,87 @@
+.perfilContainer {
+    width: 80%;
+    background-color: #f7f7f7;
+    margin: 0 auto;
+    border-radius: 8px;
+    text-align: center;
+    min-height: 680px;
+}
+
+.perfilContainer span {
+    color: #ff6835;
+}
+
+.perfilWrap {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+
+}
+
+.apresentacao {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 auto;
+}
+
+.apresentacao span {
+    font-weight: bold;
+}
+
+.addFotoPerfil {
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 0 auto;
+
+}
+
+.addFotoPerfil input {
+    margin: 0 auto;
+
+}
+
+/* .avatarContainer {
+    padding: 10px;
+    margin: 0 auto;
+} */
+
+@media(max-width: 425px){
+    .avatarContainer img{
+        width: 80%;
+        padding: 10px;
+        
+    }
+
+    .perfilWrap{
+        padding: 0;
+    }
+}
+
+@media(max-width:375px){
+    .avatarContainer{
+        width: 100%;
+    }
+
+    .perfilWrap{
+        padding: 0;
+    }
+
+    
+}
+
+@media(max-width:320px){
+    .addFotoPerfil input{
+        font-size: 10px;
+    }
+}

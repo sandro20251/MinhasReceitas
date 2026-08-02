@@ -1,0 +1,23 @@
+.favoritosContainer {
+    width: 80%;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    margin: 0 auto;
+    min-height: 680px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+
+}
+
+.favoritosContainer h1{
+    text-align: center;
+    color:#ff6835;
+}
+
+.favoritosWrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+}

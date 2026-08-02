@@ -1,0 +1,94 @@
+.labelContainer {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginContainer {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: 0 auto;
+
+}
+
+.partea {
+    width: 50%;
+    min-height: 680px;
+    background-color: #f7f7f7;
+    margin: 5px;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.parteb {
+    width: 50%;
+    min-height: 680px;
+    background-color: #f7f7f7;
+    margin: 5px;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.partea h1,
+.parteb h1 {
+    color: #ff6835;
+    margin-bottom: 10px;
+}
+
+.botao {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+
+}
+
+.registroLogin {
+    text-align: center;
+}
+
+.registroLogin span {
+    color: #ff6835;
+
+}
+
+.partea p {
+    padding: 10px;
+}
+
+@media(max-width:768px) {
+    .partea h1 {
+        text-align: center;
+    }
+}
+
+@media(max-width:425px) {
+    .loginContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .partea {
+        width: 100%;
+        min-height: 200px;
+    }
+
+    .parteb {
+        width: 100%;
+        min-height: 200px;
+    }
+
+    .partea p{
+        text-align: center;
+    }
+}

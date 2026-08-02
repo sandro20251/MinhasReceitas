@@ -2,21 +2,34 @@ import { Link } from 'react-router-dom';
 import Curtidas from '../components/Curtidas';
 import { useState } from 'react';
 import Comment from './Comment';
+import './RecipeCard.css';
 
 
 const RecipeCard = ({ title, category, user, description, image, id }) => {
-    
+
 
     return (
-        <div>
-            <img src={image} alt={title} />
-            <h2>{title}</h2>
-            <h3>{category}</h3>
-            <p>{description}</p>
-            <Curtidas idReceita={id} />
-            <div>
-                <Link to={`/recipe/${id}`}>Mais detalhes</Link>
+
+        <div className='recipeCardContainer'>
+            {image && (
+                <img
+                    src={`http://localhost:5000${image}`}
+                    alt={title}
+                    className="recipeImage"
+                />
+            )}
+            <div className='inf'>
+                <h2>{title}</h2>
+                <h3>{category}</h3>
+                <p>{description}</p>
+                <Curtidas idReceita={id} />
+                <div className='maisdetalhes'>
+                    <Link to={`/recipe/${id}`}><span>Mais detalhes</span></Link>
+                </div>
             </div>
+
+
+
 
         </div>
 

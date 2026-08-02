@@ -1,0 +1,92 @@
+.registerContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+
+}
+
+.labelContainer {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+}
+
+.registerMaster {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.divisaoPrincipal {
+    display: flex;
+    flex-direction: row;
+
+
+}
+
+.subdivisaoa {
+    width: 50%;
+    min-height: 680px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.subdivisaob {
+    width: 50%;
+    min-height: 680px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.subdivisaoa h1,
+.subdivisaob h1 {
+    color: #ff6835;
+    text-align: center;
+}
+
+.botao {
+    margin-top: 10px;
+}
+
+.image {
+    margin-top: 20px;
+    width: 60%;
+    border-radius: 8px;
+}
+
+.subdivisaoa p {
+    padding: 10px;
+    text-align: center;
+}
+
+@media(max-width:425px) {
+    .divisaoPrincipal {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .subdivisaoa {
+        width: 100%;
+        min-height: 200px;
+    }
+
+    .subdivisaob {
+        width: 100%;
+        min-height: 200px;
+    }
+}

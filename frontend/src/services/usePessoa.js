@@ -15,14 +15,14 @@ const usePessoa = () => {
     const readFavorite = async () => {
 
         const token = localStorage.getItem('token');
-       
+
         const res = await fetch(`${url}/all/favorites`, {
             headers: {
                 "content-type": "application/json",
                 authorization: `Bearer ${token}`
             }
         })
-         
+
 
         const json = await res.json();
 
@@ -34,7 +34,50 @@ const usePessoa = () => {
         return json;
     }
 
-    return { getPessoa, readFavorite }
+    const deleteUser = async () => {
+        const token = localStorage.getItem('token');
+        const res = await fetch(`${url}/excluirConta`, {
+            method: "DELETE",
+            headers: {
+                "Content-type": "application/json",
+                authorization: `Bearer ${token}`
+            }
+        })
+
+        const json = await res.json();
+        if (!res.ok) {
+            throw new Error(json.message);
+        }
+
+        return json;
+    }
+
+    const uploadAvatar = async (file) => {
+
+        const token = localStorage.getItem("token");
+        
+        const formData = new FormData();
+
+        formData.append("avatar", file);
+
+        const res = await fetch(`${url}/avatar`, {
+            method: "POST",
+            headers: {
+                authorization: `Bearer ${token}`
+            },
+            body: formData
+        });
+        console.log(res)
+        const json = await res.json();
+
+        if (!res.ok) {
+            throw new Error(json.message);
+        }
+
+        return json;
+    }
+
+    return { getPessoa, readFavorite, deleteUser, uploadAvatar }
 }
 
 export { usePessoa }

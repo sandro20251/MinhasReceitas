@@ -8,7 +8,13 @@ const Favorite = require('../models/Favorite');
 module.exports = class recipeController {
     // criar receita
     static create = async (req, res) => {
-        const { title, description, category, ingredients, preparation } = req.body;
+        const { title, description, category, ingredients, preparation, } = req.body;
+
+        const image = req.file
+            ? `/uploads/${req.file.filename}`
+            : null;
+
+
 
         if (!title) {
             res.status(422).json({ message: "O título da receita é obrigatório" });
@@ -43,6 +49,7 @@ module.exports = class recipeController {
             category,
             ingredients,
             preparation,
+            image,
             user: req.user.id
         })
 
@@ -59,7 +66,7 @@ module.exports = class recipeController {
     // listar receitas
     static readall = async (req, res) => {
         try {
-            const recipes = await Recipe.find().populate("user", "name image _id");;
+            const recipes = await Recipe.find().populate("user", "name avatar _id");;
             res.status(200).json(recipes);
             return;
         } catch (err) {
@@ -84,7 +91,7 @@ module.exports = class recipeController {
 
 
         try {
-            const receita = await Recipe.findById(id).populate("user", "name image _id");
+            const receita = await Recipe.findById(id).populate("user", "name avatar _id");
             res.status(200).json(receita);
             return;
 
@@ -145,11 +152,13 @@ module.exports = class recipeController {
             return;
         }
 
-        const usuarioReceita = recipe.user.id;
+        const usuarioReceita = recipe.user._id;
+        console.log(usuarioReceita)
 
         const user = req.user;
+        console.log(user.id)
+        if (user.id.toString() !== usuarioReceita.toString()) {
 
-        if (user.id !== usuarioReceita) {
             res.status(422).json({ message: "Você não tem permissão para alterar esta receita" });
             return;
         }
@@ -203,6 +212,17 @@ module.exports = class recipeController {
         }
 
         try {
+            await Comment.deleteMany({
+                recipe: id
+            });
+
+            await Favorite.deleteMany({
+                recipe: id
+            });
+
+            await Like.deleteMany({
+                recipeId: id
+            });
 
             await Recipe.deleteOne({ _id: id });
             res.status(200).json({ message: "Receita excluída com sucesso" });
@@ -432,7 +452,7 @@ module.exports = class recipeController {
                 return;
             }
 
-            const comments = await Comment.find({ recipe: idRecipe }).populate("user", "name");
+            const comments = await Comment.find({ recipe: idRecipe }).populate("user", "avatar name");
             res.status(200).json(comments);
 
         } catch (err) {
@@ -555,6 +575,77 @@ module.exports = class recipeController {
     }
 
     static moreLikes = async (req, res) => {
+
+    }
+
+    static updateComment = async (req, res) => {
+        const id = req.params.idComment;
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            res.status(422).json({ message: "ID inválido" });
+            return;
+        }
+
+        const comment2 = await Comment.findById(id);
+
+        if (!comment2) {
+            res.status(404).json({ message: "Comentário não encontrado" });
+            return;
+        }
+
+        const { text } = req.body;
+
+        const objeto = {
+            text,
+        }
+
+
+        try {
+
+            await Comment.updateOne({ _id: id }, objeto);
+            res.status(200).json({ message: "Comentário atualizado com sucesso" });
+            return;
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+            return;
+        }
+
+
+    }
+
+    static deleteComment = async (req, res) => {
+        const id = req.params.idComment;
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            res.status(422).json({ message: "ID inválido" });
+            return;
+        }
+
+        const comentario = await Comment.findById(id);
+
+        if (!comentario) {
+            res.status(404).json({ message: "Comenário não encontrado" });
+            return;
+        }
+
+        const user = req.user;
+        console.log(user)
+        console.log(comentario.user)
+        if (comentario.user.toString() !== user.id) {
+            return res.status(403).json({
+                message: "Você não tem permissão."
+            });
+        }
+
+        try {
+            await Comment.deleteOne({ _id: id });
+            res.status(200).json({ message: "Comentário excluido com sucesso" });
+            return;
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+            return;
+        }
+
 
     }
 }

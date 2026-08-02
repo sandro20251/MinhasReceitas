@@ -1,0 +1,101 @@
+.labelContainer {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.homeContainer {
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.margintop {
+    margin-top: 5px;
+}
+
+.procurasContainer {
+    display: flex;
+    justify-content: flex-start;
+
+
+}
+
+.procuramenor {
+    display: flex;
+    gap: 20px;
+}
+
+.esquerda {
+    width: 50%;
+    margin-top: 10px;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+}
+
+.direita {
+    width: 50%;
+    margin-top: 10px;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+}
+
+.corpoPrincipal {
+
+    display: flex;
+    gap: 5px;
+}
+
+.banner img {
+    padding: 10px;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.tituloFiltros span {
+    text-align: center;
+}
+
+@media(max-width:425px) {
+    .corpoPrincipal {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .esquerda {
+        width: 100%;
+    }
+
+    .direita {
+        width: 100%;
+    }
+}
+
+@media(max-width:320px){
+    .procurasContainer{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media(max-width:768px) {
+    .corpoPrincipal {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .procurasContainer {
+        display: flex;
+        flex-wrap: wrap;
+
+
+    }
+
+    .esquerda {
+        width: 100%;
+    }
+
+    .direita {
+        width: 100%;
+    }
+}
