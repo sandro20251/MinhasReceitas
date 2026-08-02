@@ -25,7 +25,7 @@ const UserProfile = () => {
             setUsuario(pessoa);
         }
         lerPessoa()
-    }, [getPessoa])
+    }, [getPessoa, id])
 
     useEffect(() => {
         const lerReceitas = async () => {
@@ -33,7 +33,7 @@ const UserProfile = () => {
             setReceitas(recipes);
         }
         lerReceitas();
-    }, [getPessoa])
+    }, [recipeByUser, id])
 
     const handleUploadAvatar = async (file) => {
         if (!avatar) {
