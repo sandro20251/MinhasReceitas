@@ -217,7 +217,7 @@ const Recipe = () => {
             <div className="divisao10">
                 <div className="imagemReceita">
                     <img
-                        src={`${process.env.REACT_APP_URL_BACKEND}${receita.image}`}
+                        src={`${process.env.REACT_APP_URL_RECIPES}${receita.image}`}
                         alt={receita.title}
                     />
                 </div>
@@ -321,7 +321,7 @@ const Recipe = () => {
                                                         <img
                                                             src={
                                                                 receita.user?.avatar
-                                                                    ? `${process.env.REACT_APP_URL_BACKEND}/uploads/${receita.user?.avatar}`
+                                                                    ? `${process.env.REACT_APP_URL_USERS}/uploads/${receita.user?.avatar}`
                                                                     : "/avatarPadrao.png"
                                                             }
                                                             alt="Avatar"
@@ -423,7 +423,7 @@ const Recipe = () => {
                                         <img
                                             src={
                                                 item.user.avatar
-                                                    ? `${process.env.REACT_APP_URL_BACKEND}/uploads/${item.user.avatar}`
+                                                    ? `${process.env.REACT_APP_URL_USERS}/uploads/${item.user.avatar}`
                                                     : "/avatarPadrao.png"
                                             }
                                             alt="Avatar"
