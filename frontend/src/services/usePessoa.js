@@ -28,7 +28,6 @@ const usePessoa = () => {
 
         if (!res.ok) {
             throw new Error(json.message);
-
         }
 
         return json;
@@ -55,7 +54,7 @@ const usePessoa = () => {
     const uploadAvatar = async (file) => {
 
         const token = localStorage.getItem("token");
-        
+
         const formData = new FormData();
 
         formData.append("avatar", file);
@@ -67,7 +66,7 @@ const usePessoa = () => {
             },
             body: formData
         });
-        console.log(res)
+
         const json = await res.json();
 
         if (!res.ok) {

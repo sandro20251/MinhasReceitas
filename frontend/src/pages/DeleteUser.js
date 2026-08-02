@@ -33,7 +33,7 @@ const DeleteUser = () => {
         }
 
     }
-    const handleCancelarExclusao =()=>{
+    const handleCancelarExclusao = () => {
         setLoading(false)
         navigate(-1)
     }
@@ -46,17 +46,12 @@ const DeleteUser = () => {
             <h2><span>Deletando usuário</span></h2>
             <p>Tem certeza que deseja deletar este usuário?</p>
             <div className="deleteBotao">
-            {
-                loading ? (<div><button onClick={handleExcluirConta} disabled className="botoesContainer" className="deleteBotao">...</button>
-                    <button disabled className="botoesContainer">...</button></div>) : (<div><button onClick={handleExcluirConta} className="botoesContainer">sim</button>
-                        <button className="botoesContainer" onClick={handleCancelarExclusao}>Não</button></div>)
-            }
+                {
+                    loading ? (<div><button onClick={handleExcluirConta} disabled className="botoesContainer" className="deleteBotao">...</button>
+                        <button disabled className="botoesContainer">...</button></div>) : (<div><button onClick={handleExcluirConta} className="botoesContainer">sim</button>
+                            <button className="botoesContainer" onClick={handleCancelarExclusao}>Não</button></div>)
+                }
             </div>
-
-
-
-
-
         </div>
     )
 }

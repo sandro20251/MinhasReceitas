@@ -17,8 +17,6 @@
 .procurasContainer {
     display: flex;
     justify-content: flex-start;
-
-
 }
 
 .procuramenor {
@@ -71,8 +69,8 @@
     }
 }
 
-@media(max-width:320px){
-    .procurasContainer{
+@media(max-width:320px) {
+    .procurasContainer {
         display: flex;
         flex-direction: column;
     }
@@ -87,8 +85,6 @@
     .procurasContainer {
         display: flex;
         flex-wrap: wrap;
-
-
     }
 
     .esquerda {

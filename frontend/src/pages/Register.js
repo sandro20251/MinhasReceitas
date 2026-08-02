@@ -4,6 +4,8 @@ import '../styles/botoes.css';
 import '../styles/inputs.css';
 import './register.css';
 import images from '../styles/images.jfif';
+
+// Componente que efetua o cadastro de novo usuário.
 const Register = () => {
 
     const [name, setName] = useState("");
@@ -91,19 +93,15 @@ const Register = () => {
                         </label>
                         <div className="botao">
                             {
-                            loading ? (<input type="submit" disabled value="..." className="botoesContainer" />) : (<input type="submit" value="Cadastrar" className="botoesContainer" />)
-                        }
+                                loading ? (<input type="submit" disabled value="..." className="botoesContainer" />) : (<input type="submit" value="Cadastrar" className="botoesContainer" />)
+                            }
                         </div>
-                        
+
 
                     </form>
                 </div>
             </div>
-
-
         </div>
-
-
     )
 }
 

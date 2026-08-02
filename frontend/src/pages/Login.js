@@ -16,8 +16,6 @@ const Login = () => {
         }, 5000)
     }
 
-
-
     const handleLogin = async (e) => {
         e.preventDefault();
 

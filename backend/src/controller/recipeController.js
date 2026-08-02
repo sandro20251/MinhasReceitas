@@ -14,8 +14,6 @@ module.exports = class recipeController {
             ? `/uploads/${req.file.filename}`
             : null;
 
-
-
         if (!title) {
             res.status(422).json({ message: "O título da receita é obrigatório" });
             return;
@@ -63,6 +61,7 @@ module.exports = class recipeController {
         }
 
     }
+
     // listar receitas
     static readall = async (req, res) => {
         try {
@@ -74,6 +73,7 @@ module.exports = class recipeController {
             return;
         }
     }
+
     // buscar receita
     static read = async (req, res) => {
         const id = req.params.id;
@@ -89,7 +89,6 @@ module.exports = class recipeController {
 
         }
 
-
         try {
             const receita = await Recipe.findById(id).populate("user", "name avatar _id");
             res.status(200).json(receita);
@@ -101,6 +100,7 @@ module.exports = class recipeController {
         }
 
     }
+
     // atualizar receita
     static update = async (req, res) => {
         const { title, description, category, ingredients, preparation } = req.body;
@@ -130,8 +130,6 @@ module.exports = class recipeController {
             return;
         }
 
-
-
         const id = req.params.id;
 
         if (!id) {
@@ -153,10 +151,9 @@ module.exports = class recipeController {
         }
 
         const usuarioReceita = recipe.user._id;
-        console.log(usuarioReceita)
 
         const user = req.user;
-        console.log(user.id)
+
         if (user.id.toString() !== usuarioReceita.toString()) {
 
             res.status(422).json({ message: "Você não tem permissão para alterar esta receita" });
@@ -182,6 +179,7 @@ module.exports = class recipeController {
             return;
         }
     }
+
     // excluir receita
     static delete = async (req, res) => {
         const id = req.params.id;
@@ -231,22 +229,20 @@ module.exports = class recipeController {
             res.status(500).json({ message: err.message });
             return;
         }
-
     }
 
     // buscar receita por usuario
 
     static recipesByUser = async (req, res) => {
         const idUsuario = req.params.idUsuario;
-        console.log(idUsuario)
 
         if (!mongoose.Types.ObjectId.isValid(idUsuario)) {
             res.status(422).json({ message: "ID inválido" });
             return;
         }
 
-        const receitas = await Recipe.find({ user: idUsuario }).sort({ createdAt: -1 }).populate("user", "name image");;
-        console.log(receitas)
+        const receitas = await Recipe.find({ user: idUsuario }).sort({ createdAt: -1 }).populate("user", "name image");
+
         if (receitas.length === 0) {
             res.status(404).json({ message: "Nenhuma receita encontrada" });
             return;
@@ -259,8 +255,6 @@ module.exports = class recipeController {
             res.status(500).json({ message: err.message });
             return;
         }
-
-
     }
 
     // curtir receitas
@@ -279,7 +273,6 @@ module.exports = class recipeController {
         if (!receita) {
             res.status(404).json({ mensagem: "Nenhuma receita encontrada" });
             return;
-
         }
 
         const user = req.user;
@@ -332,7 +325,6 @@ module.exports = class recipeController {
         if (!receita) {
             res.status(404).json({ menssage: "Nenhuma receita encontrada" });
             return;
-
         }
 
         const idUser = req.user.id;
@@ -433,8 +425,8 @@ module.exports = class recipeController {
     }
 
     // ler comentatrios da receita
-    static allComments = async (req, res) => {
 
+    static allComments = async (req, res) => {
 
         try {
 
@@ -460,6 +452,7 @@ module.exports = class recipeController {
             return;
         }
     }
+    // Favoritando receita
 
     static addFavorite = async (req, res) => {
 
@@ -503,6 +496,7 @@ module.exports = class recipeController {
             return;
         }
     }
+    // Desfavoritando Receita
 
     static removeFavorite = async (req, res) => {
         try {
@@ -532,6 +526,7 @@ module.exports = class recipeController {
             return;
         }
     }
+    // fazendo pesquisa de título
 
     static searchTitle = async (req, res) => {
         const { titleSearch } = req.query;
@@ -559,6 +554,7 @@ module.exports = class recipeController {
             });
         }
     }
+    // Filtrando por categoria
 
     static searchCategory = async (req, res) => {
         const { category } = req.query;
@@ -573,10 +569,7 @@ module.exports = class recipeController {
             return;
         }
     }
-
-    static moreLikes = async (req, res) => {
-
-    }
+    // Atualizando comentário
 
     static updateComment = async (req, res) => {
         const id = req.params.idComment;
@@ -599,7 +592,6 @@ module.exports = class recipeController {
             text,
         }
 
-
         try {
 
             await Comment.updateOne({ _id: id }, objeto);
@@ -610,8 +602,8 @@ module.exports = class recipeController {
             return;
         }
 
-
     }
+    // Deletando comentário
 
     static deleteComment = async (req, res) => {
         const id = req.params.idComment;
@@ -629,8 +621,7 @@ module.exports = class recipeController {
         }
 
         const user = req.user;
-        console.log(user)
-        console.log(comentario.user)
+
         if (comentario.user.toString() !== user.id) {
             return res.status(403).json({
                 message: "Você não tem permissão."
@@ -645,7 +636,6 @@ module.exports = class recipeController {
             res.status(500).json({ message: err.message });
             return;
         }
-
 
     }
 }

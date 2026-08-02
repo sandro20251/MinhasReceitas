@@ -7,7 +7,7 @@ import './UserProfile.css'
 
 
 import { useEffect, useState } from "react";
-
+// Componente que mostra a página de usuário
 const UserProfile = () => {
     const [avatar, setAvatar] = useState(null);
     const navigate = useNavigate()
@@ -53,9 +53,7 @@ const UserProfile = () => {
             alert(response.message);
 
         } catch (err) {
-
             alert(err.message);
-
         }
     }
 
@@ -79,7 +77,6 @@ const UserProfile = () => {
                 <hr></hr>
                 <Link to="/deleteUser"><span>Excluir conta</span></Link>
 
-                
             </div>
             <div className="addFotoPerfil">
                 <input
@@ -98,7 +95,7 @@ const UserProfile = () => {
                     receitas.map((item) => {
                         return (
                             <div key={item._id}>
-                                <RecipeCard id={item._id} title={item.title} category={item.category} description={item.description} user={item.user} image={item.image}/>
+                                <RecipeCard id={item._id} title={item.title} category={item.category} description={item.description} user={item.user} image={item.image} />
                                 <hr></hr>
                             </div>
                         )

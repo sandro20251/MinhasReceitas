@@ -3,9 +3,6 @@ import { useState } from "react";
 const url = process.env.REACT_APP_URL_RECIPES;
 const url2 = process.env.REACT_APP_URL_RECEITASUSUARIOS;
 
-
-
-
 const useRecipes = () => {
     const [receita, setReceita] = useState({});
     const [comentarios, setComentarios] = useState([]);
@@ -32,7 +29,7 @@ const useRecipes = () => {
         const res = await fetch(url, {
             method: 'POST',
             headers: {
-                
+
                 authorization: `Bearer ${token}`
             },
             body: formData
@@ -43,8 +40,6 @@ const useRecipes = () => {
         if (!res.ok) {
             throw new Error(json.message);
         }
-
-
     }
 
     const readRecipe = async (id) => {
@@ -106,12 +101,10 @@ const useRecipes = () => {
     }
 
     const CountLike = async (idRecipe) => {
-        // const token = localStorage.getItem("token");
 
         const res = await fetch(`${url}/${idRecipe}/count`, {
             headers: {
                 "content-type": "application/json",
-                // Authorization: `Bearer ${token}`
             }
         })
 
@@ -138,7 +131,6 @@ const useRecipes = () => {
             throw new Error(json.message);
         }
 
-
         return json;
     }
 
@@ -152,8 +144,6 @@ const useRecipes = () => {
                 authorization: `Bearer ${token}`
             }
         })
-
-
 
         const json = await res.json();
         if (!res.ok) {
@@ -177,7 +167,6 @@ const useRecipes = () => {
         if (!res.ok) {
             throw new Error(json.message);
         }
-
 
         return json;
     }
@@ -267,7 +256,7 @@ const useRecipes = () => {
         })
 
         const json = await res.json();
-        console.log(json)
+
         if (!res.ok) {
             throw new Error(json.message);
         }

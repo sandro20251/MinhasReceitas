@@ -12,8 +12,6 @@ router.get('/', recipeContorller.readall);
 router.get('/portitulo', recipeContorller.searchTitle);
 // buscar por categoria
 router.get('/category', recipeContorller.searchCategory);
-// mostrar as rceitas pelas que tem mais curtidas
-router.get('/maisCurtidas', recipeContorller.moreLikes);
 // receitas por usuario
 router.get('/ByUser/:idUsuario', recipeContorller.recipesByUser);
 // buscar receita

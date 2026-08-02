@@ -38,8 +38,6 @@ const Recipes = () => {
             ingredients,
             preparation,
             image
-
-
         }
 
         setLoading(true)
@@ -141,7 +139,7 @@ const Recipes = () => {
                             type="file"
                             accept="image/*"
                             onChange={handleImage}
-                            
+
                         />
                     </label>
                     <div>

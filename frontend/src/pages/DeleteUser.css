@@ -6,9 +6,7 @@
     text-align: center;
     margin-top: 10px;
     margin-bottom: 10px;
-    
     min-height: 680px;
-
 }
 
 .deleteContainer h2,
@@ -27,12 +25,11 @@
 @media(max-width:425px) {
     .deleteContainer {
         min-height: 250px;
-    margin-right: 30px;
-        
+        margin-right: 30px;
     }
 }
 
-@media(max-width:375px){
+@media(max-width:375px) {
     .deleteContainer {
         margin-right: 27px;
     }

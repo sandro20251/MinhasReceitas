@@ -91,7 +91,6 @@ module.exports = class UserController {
             });
         }
 
-
         try {
             const user = await User.findOne({ email });
 
@@ -118,13 +117,6 @@ module.exports = class UserController {
             res.status(500).json({ message: err.message });
             return;
         }
-
-
-
-    }
-
-    // Atualização
-    static update = async (req, res) => {
 
     }
 
@@ -193,7 +185,7 @@ module.exports = class UserController {
 
     }
 
-
+    // Atualizando foto de perfil
 
     static uploadAvatar = async (req, res) => {
 
@@ -235,7 +227,6 @@ module.exports = class UserController {
         }
 
     }
-
 
 }
 

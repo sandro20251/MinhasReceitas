@@ -9,6 +9,7 @@ import '../components/RecipeCard.css';
 import Recipes from '../pages/Recipes';
 import pave from '../styles/pave2.jpg';
 
+// Página inicial
 const Home = () => {
     const [recipes, setRecipes] = useState([])
     const [loading, setLoading] = useState(false);
@@ -17,11 +18,9 @@ const Home = () => {
     const [category, setCategory] = useState("");
     const image = null;
     const { lerReceita, searchTitle, searchCategory } = useRecipes();
-
     const [filtro, setFiltro] = useState("");
     const [ordenacao, setOrdenacao] = useState("");
     const [tempo, setTempo] = useState("")
-
 
     const createMessage = (message) => {
         setMessage(message);
@@ -93,9 +92,7 @@ const Home = () => {
         }
     }
 
-
     const handleFiltros = async (e) => {
-
 
         const valor = e.target.value
         setOrdenacao(valor)
@@ -106,7 +103,6 @@ const Home = () => {
                 return a.title.localeCompare(b.title)
             })
             setRecipes(r)
-
         }
 
         if (valor === "decrescente") {
@@ -118,10 +114,8 @@ const Home = () => {
 
     }
 
-
     return (
         <div className='homeContainer'>
-
 
             <div className='procurasContainer'>
 

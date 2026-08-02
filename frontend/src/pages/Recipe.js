@@ -12,6 +12,7 @@ import '../styles/botoes.css';
 import '../styles/inputs.css';
 import '../styles/textarea.css';
 
+// Componente que mostra a receita
 const Recipe = () => {
     const navigate = useNavigate()
     const { receita, readRecipe, newComment, allComments, deleteRecipe, updateRecipes, updateComment, comentarios, setReceita, deleteComment } = useRecipes();
@@ -53,7 +54,6 @@ const Recipe = () => {
         } finally {
             setLoading(false)
         }
-
     }
 
     useEffect(() => {
@@ -101,12 +101,11 @@ const Recipe = () => {
             } catch (err) {
                 console.log(err.message)
             }
-
-
         }
         allComments2()
 
     }, [receita._id])
+
     const handleConfirmarExclusao = () => {
         setConfExclusao(true);
     }
@@ -213,7 +212,7 @@ const Recipe = () => {
     console.log(comentarios)
 
     return (
-        // ////////////////////////////////////
+
         <div key={receita.id} className="recipeContainer">
             <div className="divisao10">
                 <div className="imagemReceita">
@@ -246,7 +245,7 @@ const Recipe = () => {
                             </div>
                             <div>
                                 <div>
-                                    {/* /////////////////////////////////////////////////////////////////////////////////////// */}
+
                                     {
                                         alterarReceita ? (
                                             <div>
@@ -331,8 +330,6 @@ const Recipe = () => {
 
                                                     </div>
 
-
-
                                                     <Link to={`/users/${receita.user?._id}`}><span>Perfil</span></Link>
                                                 </div>
 
@@ -383,21 +380,12 @@ const Recipe = () => {
 
                                                 </div>
                                             </>
-                                            // /////////////////////////////////////////////////
                                         )
                                     }
-
-
-                                    {/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 </div>
                             </div>
-
-
-
                         </div>
-
                     )}
-
                 </div>
             </div>
             <div className="divisao20">

@@ -15,10 +15,7 @@
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
-
     gap: 10px;
-
-
 }
 
 .apresentacao {
@@ -51,37 +48,29 @@
 
 }
 
-/* .avatarContainer {
-    padding: 10px;
-    margin: 0 auto;
-} */
-
-@media(max-width: 425px){
-    .avatarContainer img{
+@media(max-width: 425px) {
+    .avatarContainer img {
         width: 80%;
         padding: 10px;
-        
     }
 
-    .perfilWrap{
+    .perfilWrap {
         padding: 0;
     }
 }
 
-@media(max-width:375px){
-    .avatarContainer{
+@media(max-width:375px) {
+    .avatarContainer {
         width: 100%;
     }
 
-    .perfilWrap{
+    .perfilWrap {
         padding: 0;
     }
-
-    
 }
 
-@media(max-width:320px){
-    .addFotoPerfil input{
+@media(max-width:320px) {
+    .addFotoPerfil input {
         font-size: 10px;
     }
 }

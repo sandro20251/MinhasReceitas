@@ -8,35 +8,51 @@ import Recipe from '../src/pages/Recipe';
 import UserProfile from './pages/UserProfile';
 import Favoritos from './pages/Favoritos';
 import DeleteUser from './pages/DeleteUser';
-import AlterarUsuario from './pages/AlterarUsuario';
+
 import icone from '../src/styles/icone.jpg';
+import Menu from './components/Menu';
+import { useState } from 'react';
 
 function App() {
+  const [menu, setMenu] = useState(false);
 
+  const handleMenu = () => {
+    if (menu === false) {
+      setMenu(true);
+    } else {
+      setMenu(false)
+    }
 
+  }
   return (
     <div className="App">
       <BrowserRouter>
 
         <div className='header1'>
-          <div className='header1'>
-            <img src={icone}></img>
-            
-          </div>
+          <div className='menu2'>
+            <div className='header1'>
+              <img src={icone}></img>
 
+            </div>
+
+            <div >
+              <button className='botaoHamburguer' onClick={handleMenu}>☰</button>
+            </div>
+          </div>
 
           <div className={'menu'}>
             <Link to="/">Início</Link>
             <Link to="/register">Cadastro</Link>
             <Link to="/login">Login</Link>
             <Link to="/favorites">favoritas</Link>
-
-
           </div>
 
-
+          {
+            menu && <Menu />
+          }
 
         </div>
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
@@ -46,8 +62,6 @@ function App() {
           <Route path={`/users/:id`} element={<UserProfile />} />
           <Route path={`/favorites`} element={<Favoritos />} />
           <Route path={`/deleteUser`} element={<DeleteUser />} />
-          <Route path={`/alterarusuario`} element={<AlterarUsuario />} />
-
         </Routes>
         <footer>
           <h2>Mapa do site:</h2>

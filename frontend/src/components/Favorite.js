@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useRecipes } from "../services/useRecipes";
 import '../components/Favorite.css';
 
+// componente para favoritar/desfavoritar receita
+
 const Favorite = ({ idReceita }) => {
     const [btnAtivo, setBtnAtivo] = useState(false);
     const [message, setMessage] = useState("");
@@ -51,9 +53,6 @@ const Favorite = ({ idReceita }) => {
                     estadoFavorito ? (<button onClick={handleDesfavoritar} className="starButton2">⭐</button>) : (<button onClick={handleFavoritar} className="starButton">⭐</button>)
                 }
             </div>
-
-
-
         </div>
     )
 }

@@ -3,6 +3,7 @@ import { useRecipes } from "../services/useRecipes";
 import '../styles/botoes.css'
 import '../components/Curtidas.css';
 
+// componente para efetuar as curtidas/descurtidas de receitas
 
 const Curtidas = ({ idReceita }) => {
 
@@ -13,8 +14,6 @@ const Curtidas = ({ idReceita }) => {
     const [estadoCurtida, setEstadoCurtida] = useState(false);
 
     const { LikeService, DeslikeService, CountLike } = useRecipes();
-
-
 
     const atualizarCurtidas = async () => {
         const total = await CountLike(idReceita);
@@ -53,7 +52,6 @@ const Curtidas = ({ idReceita }) => {
             setLoading(false);
         }
     }
-
 
     useEffect(() => {
         atualizarCurtidas();

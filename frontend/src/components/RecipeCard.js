@@ -4,9 +4,8 @@ import { useState } from 'react';
 import Comment from './Comment';
 import './RecipeCard.css';
 
-
+// Componente que recebe resumo das receitas cadastradas.
 const RecipeCard = ({ title, category, user, description, image, id }) => {
-
 
     return (
 
@@ -28,11 +27,7 @@ const RecipeCard = ({ title, category, user, description, image, id }) => {
                 </div>
             </div>
 
-
-
-
         </div>
-
     )
 }
 
