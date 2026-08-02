@@ -40,7 +40,7 @@ const Register = () => {
 
         try {
 
-            const response = await register(objeto);
+           await register(objeto);
 
             createMessage("✅ Cadastro criado com sucesso.");
 

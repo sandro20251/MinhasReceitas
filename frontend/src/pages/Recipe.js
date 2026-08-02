@@ -15,7 +15,7 @@ import '../styles/textarea.css';
 // Componente que mostra a receita
 const Recipe = () => {
     const navigate = useNavigate()
-    const { receita, readRecipe, newComment, allComments, deleteRecipe, updateRecipes, updateComment, comentarios, setReceita, deleteComment } = useRecipes();
+    const { receita, readRecipe, newComment, allComments, deleteRecipe, updateRecipes, updateComment, comentarios, deleteComment } = useRecipes();
     const { id } = useParams();
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
@@ -69,7 +69,7 @@ const Recipe = () => {
             }
         }
         lerReceita(id)
-    }, [id])
+    }, [id, readRecipe])
 
     useEffect(() => {
         // O uso do "?." garante que o split só roda se receita e ingredients existirem
@@ -104,7 +104,7 @@ const Recipe = () => {
         }
         allComments2()
 
-    }, [receita._id])
+    }, [allComments, id])
 
     const handleConfirmarExclusao = () => {
         setConfExclusao(true);

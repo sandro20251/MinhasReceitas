@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { usePessoa } from '../services/usePessoa';
 import { useRecipes } from "../services/useRecipes";
 import RecipeCard from '../components/RecipeCard';
-import { useNavigate } from "react-router-dom";
+
 import './UserProfile.css'
 
 
@@ -25,7 +25,7 @@ const UserProfile = () => {
             setUsuario(pessoa);
         }
         lerPessoa()
-    }, [id])
+    }, [getPessoa])
 
     useEffect(() => {
         const lerReceitas = async () => {
@@ -33,7 +33,7 @@ const UserProfile = () => {
             setReceitas(recipes);
         }
         lerReceitas();
-    }, [id])
+    }, [getPessoa])
 
     const handleUploadAvatar = async (file) => {
         if (!avatar) {
