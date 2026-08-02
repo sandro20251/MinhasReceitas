@@ -31,7 +31,7 @@ function App() {
         <div className='header1'>
           <div className='menu2'>
             <div className='header1'>
-              <img src={icone}></img>
+              <img src={icone} alt="icone"></img>
 
             </div>
 

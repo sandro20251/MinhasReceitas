@@ -8,7 +8,7 @@ const DeleteUser = () => {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
-    const [exclusao, setExclusao] = useState(false)
+    const [setExclusao] = useState(false)
 
     const { deleteUser } = usePessoa();
 
@@ -47,7 +47,7 @@ const DeleteUser = () => {
             <p>Tem certeza que deseja deletar este usuário?</p>
             <div className="deleteBotao">
                 {
-                    loading ? (<div><button onClick={handleExcluirConta} disabled className="botoesContainer" className="deleteBotao">...</button>
+                    loading ? (<div><button onClick={handleExcluirConta} disabled  className="deleteBotao">...</button>
                         <button disabled className="botoesContainer">...</button></div>) : (<div><button onClick={handleExcluirConta} className="botoesContainer">sim</button>
                             <button className="botoesContainer" onClick={handleCancelarExclusao}>Não</button></div>)
                 }

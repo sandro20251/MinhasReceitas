@@ -14,15 +14,17 @@ const Favoritos = () => {
 
         const lerReceitas = async () => {
             try {
-                const r = await readFavorite()
+                const r = await readFavorite();
 
-                setReceitas(r)
+                setReceitas(r);
             } catch (err) {
-                console.log(err.message)
+                console.log(err.message);
             }
-        }
+        };
+
         lerReceitas();
-    }, [])
+
+    }, [readFavorite]);
 
     return (
         <div className="favoritosContainer">

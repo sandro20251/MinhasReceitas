@@ -16,7 +16,7 @@ const Home = () => {
     const [message, setMessage] = useState("");
     const [busca, setBusca] = useState("");
     const [category, setCategory] = useState("");
-    const image = null;
+    
     const { lerReceita, searchTitle, searchCategory } = useRecipes();
     const [filtro, setFiltro] = useState("");
     const [ordenacao, setOrdenacao] = useState("");
@@ -70,7 +70,7 @@ const Home = () => {
 
         ler()
 
-    }, [])
+    }, [lerReceita])
 
     const handleTempo = (e) => {
         const valor = e.target.value

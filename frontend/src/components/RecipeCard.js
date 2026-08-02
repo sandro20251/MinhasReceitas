@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
 import Curtidas from '../components/Curtidas';
-
-import Comment from './Comment';
 import './RecipeCard.css';
 
 // Componente que recebe resumo das receitas cadastradas.
