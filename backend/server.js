@@ -10,7 +10,21 @@ connect();
 
 app.use(express.json());
 
-app.use(cors({ credentials: true, origin: "https://minhas-receitas-p6oe.vercel.app" }));
+const allowedOrigins = [
+    "http://localhost:3000",
+    "https://minhas-receitas-p6oe.vercel.app",
+    "https://minhas-receitas-rouge.vercel.app"
+];
+
+app.use(cors({
+    origin(origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("CORS não permitido"));
+        }
+    }
+}));
 
 app.use(
     "/uploads",
