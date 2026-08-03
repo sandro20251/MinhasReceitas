@@ -16,7 +16,7 @@ const useRecipes = () => {
         }
 
         return await response.json();
-    }, []);
+    }, [url]);
 
 
 
