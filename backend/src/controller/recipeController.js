@@ -150,13 +150,14 @@ module.exports = class recipeController {
             return;
         }
 
-        const usuarioReceita = recipe.user._id;
+        const usuarioReceita = receita.user.toString();
 
         const user = req.user;
 
-        if (user.id.toString() !== usuarioReceita.toString()) {
-
-            res.status(422).json({ message: "Você não tem permissão para alterar esta receita" });
+        if (user.id !== usuarioReceita) {
+            res.status(422).json({
+                message: "Você não tem permissão para excluir esta receita"
+            });
             return;
         }
 
