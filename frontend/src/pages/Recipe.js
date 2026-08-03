@@ -216,7 +216,7 @@ const Recipe = () => {
         <div key={receita.id} className="recipeContainer">
             <div className="divisao10">
                 <div className="imagemReceita">
-                    {receita.image && typeof receita.Commentimage === "string" && (
+                    {receita.image && typeof receita.image === "string" && (
                         <img
                             src={`${process.env.REACT_APP_URL}${receita.image.startsWith("/uploads")
                                 ? receita.image
