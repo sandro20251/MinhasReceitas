@@ -39,5 +39,5 @@ app.use('/users', require('./src/routes/UserRoutes'));
 app.use('/recipes', require('./src/routes/RecipeRoutes'));
 
 app.listen(PORT, () => {
-    console.log(`O express está escutando a porta ${porta}`);
+    console.log(`O express está escutando a porta ${PORT}`);
 })
