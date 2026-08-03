@@ -60,7 +60,7 @@ const useRecipes = () => {
 
         const json = await res.json();
         setReceita(json);
-    }, [url]);
+    }, []);
 
     const recipeByUser = async (id) => {
         const token = localStorage.getItem('token');
