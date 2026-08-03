@@ -69,7 +69,7 @@ const Home = () => {
             }
         }
 
-        ler()
+        ler(lerReceita)
 
     }, [])
 
