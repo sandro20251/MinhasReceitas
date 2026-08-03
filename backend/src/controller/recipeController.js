@@ -152,6 +152,9 @@ module.exports = class recipeController {
 
         const usuarioReceita = receita.user.toString();
 
+        console.log("USUÁRIO LOGADO:", user.id);
+        console.log("DONO DA RECEITA:", usuarioReceita);
+
         const user = req.user;
 
         if (user.id !== usuarioReceita) {
