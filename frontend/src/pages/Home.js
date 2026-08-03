@@ -8,6 +8,7 @@ import '../styles/botoes.css';
 import '../components/RecipeCard.css';
 import Recipes from '../pages/Recipes';
 import pave from '../styles/pave2.jpg';
+import { useCallback } from "react";
 
 // Página inicial
 const Home = () => {
@@ -17,7 +18,7 @@ const Home = () => {
     const [message, setMessage] = useState("");
     const [busca, setBusca] = useState("");
     const [category, setCategory] = useState("");
-    
+
     const { lerReceita, searchTitle, searchCategory } = useRecipes();
     const [filtro, setFiltro] = useState("");
     const [ordenacao, setOrdenacao] = useState("");
@@ -56,22 +57,15 @@ const Home = () => {
         }
     }
 
-    useEffect(() => {
-        const ler = async () => {
-            setLoading(true)
-            try {
-                const data = await lerReceita()
-                setRecipes(data)
-            } catch (err) {
-                createMessage(err.message)
-            } finally {
-                setLoading(false)
-            }
+    const lerReceita = useCallback(async () => {
+        const response = await fetch(process.env.REACT_APP_URL_RECIPES);
+
+        if (!response.ok) {
+            throw new Error("Erro ao buscar receitas");
         }
 
-        ler()
-
-    }, [])
+        return await response.json();
+    }, []);
 
     const handleTempo = (e) => {
         const valor = e.target.value
