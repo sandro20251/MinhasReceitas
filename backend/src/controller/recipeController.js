@@ -11,7 +11,7 @@ module.exports = class recipeController {
         const { title, description, category, ingredients, preparation, } = req.body;
 
         const image = req.file
-            ? `/uploads/${req.file.filename}`
+            ? req.file.filename
             : null;
 
         if (!title) {
