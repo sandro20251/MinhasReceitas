@@ -116,6 +116,8 @@ const Home = () => {
 
     }
 
+    console.log("RECEITAS HOME:", recipes);
+
     return (
         <div className='homeContainer'>
 
