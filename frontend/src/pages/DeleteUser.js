@@ -8,7 +8,7 @@ const DeleteUser = () => {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
-    const [exclusao, setExclusao] = useState(false)
+    const [, setExclusao] = useState(false)
 
     const { deleteUser } = usePessoa();
 
