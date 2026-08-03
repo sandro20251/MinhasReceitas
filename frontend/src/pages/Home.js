@@ -8,7 +8,7 @@ import '../styles/botoes.css';
 import '../components/RecipeCard.css';
 import Recipes from '../pages/Recipes';
 import pave from '../styles/pave2.jpg';
-import { useCallback } from "react";
+
 
 // Página inicial
 const Home = () => {
