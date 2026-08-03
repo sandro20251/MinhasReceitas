@@ -220,7 +220,7 @@ const Recipe = () => {
                         <img
                             src={`${process.env.REACT_APP_URL}${receita.image.startsWith("/uploads")
                                 ? receita.image
-                                : `/uploads/${image}`
+                                : `/uploads/${receita.image}`
                                 }`}
                             alt={title}
                             className="recipeImage"
