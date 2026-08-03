@@ -69,7 +69,7 @@ const Recipe = () => {
             }
         }
         lerReceita(id)
-    }, [])
+    }, [id, readRecipe])
 
     useEffect(() => {
         // O uso do "?." garante que o split só roda se receita e ingredients existirem
