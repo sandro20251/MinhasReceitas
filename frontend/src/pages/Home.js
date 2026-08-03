@@ -69,9 +69,9 @@ const Home = () => {
             }
         }
 
-        ler(lerReceita)
+        ler()
 
-    }, [])
+    }, [lerReceita])
 
     const handleTempo = (e) => {
         const valor = e.target.value
