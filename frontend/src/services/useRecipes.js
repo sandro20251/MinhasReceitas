@@ -14,7 +14,7 @@ const useRecipes = () => {
         if (!response.ok) {
             throw new Error("Erro ao buscar receitas");
         }
-        const json = await res.json();
+        const json = await response.json();
         console.log("RETORNO DA API:", json);
         return await response.json();
     }, []);
