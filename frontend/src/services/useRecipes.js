@@ -49,17 +49,18 @@ const useRecipes = () => {
         }
     }
 
-    const readRecipe = async (id) => {
-        const token = localStorage.getItem('token');
+    const readRecipe = useCallback(async (id) => {
+        const token = localStorage.getItem("token");
+
         const res = await fetch(`${url}/${id}`, {
             headers: {
-                "authorization": `Bearer ${token}`
-            }
+                authorization: `Bearer ${token}`,
+            },
         });
-        const json = await res.json();
-        setReceita(json)
 
-    }
+        const json = await res.json();
+        setReceita(json);
+    }, [url]);
 
     const recipeByUser = async (id) => {
         const token = localStorage.getItem('token');
