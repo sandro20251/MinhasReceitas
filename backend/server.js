@@ -10,7 +10,7 @@ connect();
 
 app.use(express.json());
 
-app.use(cors({ credentials: true, origin: "https://minhas-receitas-rouge.vercel.app" }));
+app.use(cors({ credentials: true, origin: "https://minhas-receitas-p6oe.vercel.app" }));
 
 app.use(
     "/uploads",
