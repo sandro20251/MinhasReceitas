@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 const url = process.env.REACT_APP_URL_RECIPES;
 const url2 = process.env.REACT_APP_URL_RECEITASUSUARIOS;
-import { useCallback } from "react";
+
 
 const useRecipes = () => {
     const [receita, setReceita] = useState({});
