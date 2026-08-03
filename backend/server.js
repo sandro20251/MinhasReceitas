@@ -8,7 +8,7 @@ const porta = process.env.PORTA || 5000;
 const app = express();
 connect();
 
-app.use(express.json());
+
 
 const allowedOrigins = [
     "http://localhost:3000",
@@ -25,6 +25,8 @@ app.use(cors({
         }
     }
 }));
+
+app.use(express.json());
 
 app.use(
     "/uploads",
