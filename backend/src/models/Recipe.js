@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const User = require('../models/User');
 
 const Recipe = mongoose.model('Recipe', new Schema({
     title: { type: String, required: true },
@@ -14,14 +13,11 @@ const Recipe = mongoose.model('Recipe', new Schema({
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        required: true
     }
 
 }, { timestamps: true }))
-
-
-
-
 
 
 module.exports = Recipe;

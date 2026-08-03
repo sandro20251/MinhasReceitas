@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 // Componente que mostra a página de usuário
 const UserProfile = () => {
     const [avatar, setAvatar] = useState(null);
-   
+
     const [usuario, setUsuario] = useState({});
     const [receitas, setReceitas] = useState([]);
 
@@ -63,7 +63,7 @@ const UserProfile = () => {
                 <img
                     src={
                         usuario.avatar
-                            ? `http://localhost:5000/uploads/${usuario.avatar}`
+                            ? `${process.env.REACT_APP_URL}/uploads/${usuario.avatar}`
                             : "/avatarPadrao.png"
                     }
                     alt="Avatar"

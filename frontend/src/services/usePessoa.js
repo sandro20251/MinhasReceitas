@@ -1,8 +1,9 @@
 const url = process.env.REACT_APP_URL_USERS;
-const token = localStorage.getItem('token');
+
 
 const usePessoa = () => {
     const getPessoa = async (id) => {
+        const token = localStorage.getItem('token');
         const res = await fetch(`${url}/${id}`, {
             headers: {
                 authorization: `Bearer ${token}`

@@ -4,8 +4,7 @@ import './RecipeCard.css';
 
 // Componente que recebe resumo das receitas cadastradas.
 const RecipeCard = ({ title, category, user, description, image, id }) => {
-    console.log("Imagem:", image);
-    console.log("URL:", `${process.env.REACT_APP_URL}/uploads/${image}`);
+    
     return (
 
         <div className='recipeCardContainer'>

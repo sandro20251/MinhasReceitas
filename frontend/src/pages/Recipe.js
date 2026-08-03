@@ -27,7 +27,7 @@ const Recipe = () => {
     const [checkComment, setCheckComment] = useState(false);
     const [comment, setComment] = useState("");
 
-    const [title, setTitle] = useState(receita.title);
+    const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
     const [ingredients, setIngredients] = useState("");
@@ -429,7 +429,7 @@ const Recipe = () => {
                                         <img
                                             src={
                                                 item.user.avatar
-                                                    ? `${process.env.REACT_APP_URL_USERS}/uploads/${item.user.avatar}`
+                                                    ? `${process.env.REACT_APP_URL}/uploads/${item.user.avatar}`
                                                     : "/avatarPadrao.png"
                                             }
                                             alt="Avatar"

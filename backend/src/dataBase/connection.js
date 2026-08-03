@@ -7,7 +7,7 @@ const connect = async () => {
         console.log("Banco de dados conectado com sucesso!");
     } catch (err) {
         console.log("Ocorreu um erro " + err.message);
-        return;
+        process.exit(1);
     }
 
 }

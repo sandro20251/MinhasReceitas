@@ -39,7 +39,7 @@ module.exports = class recipeController {
             return;
         }
 
-        const user = req.user;
+
 
         const recipe = new Recipe({
             title,
@@ -150,16 +150,14 @@ module.exports = class recipeController {
             return;
         }
 
-        const usuarioReceita = receita.user.toString();
+        const usuarioReceita = recipe.user.toString();
 
-        console.log("USUÁRIO LOGADO:", user.id);
-        console.log("DONO DA RECEITA:", usuarioReceita);
 
         const user = req.user;
 
         if (user.id !== usuarioReceita) {
             res.status(422).json({
-                message: "Você não tem permissão para excluir esta receita"
+                message: "Você não tem permissão para alterar esta receita"
             });
             return;
         }
@@ -227,7 +225,7 @@ module.exports = class recipeController {
             });
 
             await Recipe.deleteOne({ _id: id });
-            res.status(200).json({ message: "Receita excluída com sucesso" });
+            res.status(200).json({ message: "Receita excluida com sucesso com sucesso" });
 
         } catch (err) {
             res.status(500).json({ message: err.message });
@@ -303,7 +301,7 @@ module.exports = class recipeController {
 
 
         try {
-            const curtir = await like.save();
+            await like.save();
             res.status(201).json({ message: "Receita curtida com sucesso." });
 
             return;
@@ -590,6 +588,12 @@ module.exports = class recipeController {
         if (!comment2) {
             res.status(404).json({ message: "Comentário não encontrado" });
             return;
+        }
+
+        if (comment2.user.toString() !== req.user.id) {
+            return res.status(403).json({
+                message: "Você não tem permissão para alterar este comentário."
+            });
         }
 
         const { text } = req.body;

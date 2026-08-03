@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { logar } from '../services/useLogin';
 import '../styles/botoes.css';
 import '../styles/inputs.css';
 import './Login.css';
-import  {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 const Login = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -34,7 +36,9 @@ const Login = () => {
             localStorage.setItem('token', response.token);
             localStorage.setItem('user', JSON.stringify(response.user));
             createMessage("✅ Login realizado com sucesso.");
-            return;
+            setTimeout(() => {
+                navigate("/");
+            }, 1000);
         } catch (err) {
             createMessage(err.message);
             return;

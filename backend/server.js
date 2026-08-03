@@ -4,7 +4,7 @@ const connect = require('./src/dataBase/connection');
 require('dotenv').config();
 const path = require("path");
 
-const porta = process.env.PORTA || 5000;
+const PORT = process.env.PORTA || 5000;
 const app = express();
 connect();
 
@@ -38,6 +38,6 @@ app.use(
 app.use('/users', require('./src/routes/UserRoutes'));
 app.use('/recipes', require('./src/routes/RecipeRoutes'));
 
-app.listen(porta, () => {
+app.listen(PORT, () => {
     console.log(`O express está escutando a porta ${porta}`);
 })

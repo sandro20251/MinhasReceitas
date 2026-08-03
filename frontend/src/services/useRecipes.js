@@ -15,8 +15,7 @@ const useRecipes = () => {
             throw new Error("Erro ao buscar receitas");
         }
         const json = await response.json();
-        console.log(json);
-        return await response.json();
+        return json;
     }, []);
 
 
@@ -48,9 +47,12 @@ const useRecipes = () => {
         if (!res.ok) {
             throw new Error(json.message);
         }
+
+        return json;
     }
 
     const readRecipe = useCallback(async (id) => {
+
         const token = localStorage.getItem("token");
 
         const res = await fetch(`${url}/${id}`, {
@@ -60,9 +62,16 @@ const useRecipes = () => {
         });
 
         const json = await res.json();
-        setReceita(json);
-    }, []);
 
+        if (!res.ok) {
+            throw new Error(json.message);
+        }
+
+        setReceita(json);
+
+        return json;
+
+    }, []);
     const recipeByUser = async (id) => {
         const token = localStorage.getItem('token');
         const res = await fetch(`${url2}/${id}`, {
@@ -159,7 +168,7 @@ const useRecipes = () => {
             throw new Error(json.message);
         }
 
-        await setComentarios(json)
+        setComentarios(json)
 
         return json;
     }
@@ -218,7 +227,7 @@ const useRecipes = () => {
         const res = await fetch(`${url}/${id}`, {
             method: "DELETE",
             headers: {
-                Authorization: `Bearer ${token}`
+                authorization: `Bearer ${token}`
 
             }
         })
@@ -238,7 +247,7 @@ const useRecipes = () => {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json",
-                Authorization: `Bearer ${token}`
+                authorization: `Bearer ${token}`
             },
             body: JSON.stringify(objeto)
         })
@@ -253,12 +262,12 @@ const useRecipes = () => {
 
     const updateComment = async (id, objeto) => {
 
-
+        const token = localStorage.getItem("token");
         const res = await fetch(`${url}/${id}/comments`, {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json",
-
+                authorization: `Bearer ${token}`
             },
             body: JSON.stringify(objeto)
 
@@ -280,7 +289,7 @@ const useRecipes = () => {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json",
-                Authorization: `Bearer ${token}`
+                authorization: `Bearer ${token}`
             }
         })
 
