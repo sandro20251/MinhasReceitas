@@ -11,7 +11,10 @@ const RecipeCard = ({ title, category, user, description, image, id }) => {
         <div className='recipeCardContainer'>
             {image && (
                 <img
-                    src={`${process.env.REACT_APP_URL}/uploads/${image}`}
+                    src={`${process.env.REACT_APP_URL}${image.startsWith("/uploads")
+                            ? image
+                            : `/uploads/${image}`
+                        }`}
                     alt={title}
                     className="recipeImage"
                 />
