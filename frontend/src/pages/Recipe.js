@@ -69,7 +69,7 @@ const Recipe = () => {
             }
         }
         lerReceita(id)
-    }, [id, readRecipe])
+    }, [])
 
     useEffect(() => {
         // O uso do "?." garante que o split só roda se receita e ingredients existirem
@@ -217,8 +217,9 @@ const Recipe = () => {
             <div className="divisao10">
                 <div className="imagemReceita">
                     <img
-                        src={`${process.env.REACT_APP_URL}${receita.image}`}
-                        alt={receita.title}
+                        src={`${process.env.REACT_APP_URL}/uploads/${image}`}
+                        alt={title}
+                        className="recipeImage"
                     />
                 </div>
                 <div className="dados">
