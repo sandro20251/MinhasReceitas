@@ -2,16 +2,23 @@ import { useState } from "react";
 
 const url = process.env.REACT_APP_URL_RECIPES;
 const url2 = process.env.REACT_APP_URL_RECEITASUSUARIOS;
+import { useCallback } from "react";
 
 const useRecipes = () => {
     const [receita, setReceita] = useState({});
     const [comentarios, setComentarios] = useState([]);
-    const lerReceita = async () => {
 
-        const res = await fetch(url);
-        const json = await res.json();
-        return json;
-    }
+    const lerReceita = useCallback(async () => {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Erro ao buscar receitas");
+        }
+
+        return await response.json();
+    }, []);
+
+
 
     const createRecipes = async (objeto) => {
 

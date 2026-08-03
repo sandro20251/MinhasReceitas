@@ -57,15 +57,22 @@ const Home = () => {
         }
     }
 
-    const lerReceita = useCallback(async () => {
-        const response = await fetch(process.env.REACT_APP_URL_RECIPES);
-
-        if (!response.ok) {
-            throw new Error("Erro ao buscar receitas");
+    useEffect(() => {
+        const ler = async () => {
+            setLoading(true)
+            try {
+                const data = await lerReceita()
+                setRecipes(data)
+            } catch (err) {
+                createMessage(err.message)
+            } finally {
+                setLoading(false)
+            }
         }
 
-        return await response.json();
-    }, []);
+        ler()
+
+    }, [lerReceita])
 
     const handleTempo = (e) => {
         const valor = e.target.value
