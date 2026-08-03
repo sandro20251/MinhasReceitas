@@ -16,7 +16,7 @@ const useRecipes = () => {
         }
         console.log("RETORNO DA API:", json);
         return await response.json();
-    }, [url]);
+    }, []);
 
 
 
