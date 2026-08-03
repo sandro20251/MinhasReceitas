@@ -430,32 +430,21 @@ module.exports = class recipeController {
 
     // ler comentatrios da receita
 
-    static allComments = async (req, res) => {
+    static allComments = useCallback(async (id) => {
 
-        try {
+        const token = localStorage.getItem("token");
 
-            const idRecipe = req.params.idRecipe;
+        const res = await fetch(`${url}/${id}/comments`, {
+            headers: {
+                authorization: `Bearer ${token}`,
+            },
+        });
 
-            if (!mongoose.Types.ObjectId.isValid(idRecipe)) {
-                res.status(422).json({ message: "ID inválido" });
-                return;
-            }
+        const json = await res.json();
 
-            const receita = await Recipe.findById(idRecipe);
+        setComentarios(json);
 
-            if (!receita) {
-                res.status(404).json({ message: "Receita não encontrada" });
-                return;
-            }
-
-            const comments = await Comment.find({ recipe: idRecipe }).populate("user", "avatar name");
-            res.status(200).json(comments);
-
-        } catch (err) {
-            res.status(500).json({ message: err.message });
-            return;
-        }
-    }
+    }, []);
     // Favoritando receita
 
     static addFavorite = async (req, res) => {
