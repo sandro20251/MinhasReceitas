@@ -6,11 +6,11 @@ import '../components/Curtidas.css';
 // componente para efetuar as curtidas/descurtidas de receitas
 
 const Curtidas = ({ idReceita }) => {
-    console.log("MONTANDO CURTIDAS" , idReceita);
-   
+    console.log("MONTANDO CURTIDAS", idReceita);
+
     const [, setLoading] = useState(false);
     const [, setMessage2] = useState("");
-    const [curtidas, setCurtidas] = useState(0);
+    const [curtidas, setCurtidas] = useState(null);
 
     const [estadoCurtida, setEstadoCurtida] = useState(false);
 
@@ -24,32 +24,32 @@ const Curtidas = ({ idReceita }) => {
     }, [CountLike, idReceita]);
 
     const handleCurtir = async () => {
-        setEstadoCurtida(true)
+
         setLoading(true);
+
         try {
             await LikeService(idReceita);
+            setEstadoCurtida(true);
             await atualizarCurtidas();
-            setMessage2("Curtida realizada com sucesso");
-            return;
+
         } catch (err) {
             setMessage2("Algo deu errado");
-            return;
         } finally {
             setLoading(false);
         }
     }
 
     const handleDescurtir = async () => {
-        setEstadoCurtida(false)
+
         setLoading(true);
+
         try {
             await DeslikeService(idReceita);
+            setEstadoCurtida(false);
             await atualizarCurtidas();
-            setMessage2("Descurti a receita");
-            return;
+
         } catch (err) {
-            setMessage2("Algo deu errado curtir");
-            return;
+            setMessage2("Algo deu errado");
         } finally {
             setLoading(false);
         }
