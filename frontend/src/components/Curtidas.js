@@ -15,10 +15,11 @@ const Curtidas = ({ idReceita }) => {
     const [estadoCurtida, setEstadoCurtida] = useState(false);
 
     const { LikeService, DeslikeService, CountLike } = useRecipes();
-    const total2 = CountLike(idReceita);
+    
     const atualizarCurtidas = useCallback(async () => {
         console.log("BUSCANDO CURTIDAS:", idReceita);
         const total = await CountLike(idReceita);
+        setCurtidas(total)
         console.log("RETORNO CURTIDAS:", total);
         setCurtidas(total.count);
     }, [CountLike, idReceita]);
@@ -75,7 +76,7 @@ const Curtidas = ({ idReceita }) => {
             }
 
             <div>
-                <p>{total2}</p>
+                <p>{curtidas}</p>
             </div>
         </div>
     )
