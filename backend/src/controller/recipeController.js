@@ -202,13 +202,14 @@ module.exports = class recipeController {
             res.status(404).json({ message: "Receita não encontrada" });
             return;
         }
-        const usuarioReceita = receita.user.id;
+        const usuarioReceita = receita.user.toString();
 
         const user = req.user;
 
         if (user.id !== usuarioReceita) {
-            res.status(422).json({ message: "Você não tem permissão para excluir esta receita" });
-            return;
+            return res.status(403).json({
+                message: "Você não tem permissão para excluir esta receita"
+            });
         }
 
         try {

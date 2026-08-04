@@ -17,7 +17,7 @@ const Curtidas = ({ idReceita }) => {
 
     const atualizarCurtidas = useCallback(async () => {
         const total = await CountLike(idReceita);
-        setCurtidas(total);
+        setCurtidas(total.count);
     }, [CountLike, idReceita]);
 
     const handleCurtir = async () => {

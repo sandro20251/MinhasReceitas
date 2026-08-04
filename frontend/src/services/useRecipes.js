@@ -115,6 +115,11 @@ const useRecipes = () => {
         })
 
         const json = await res.json();
+
+        if (!res.ok) {
+            throw new Error(json.message);
+        }
+
         return json;
     }
 
