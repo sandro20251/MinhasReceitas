@@ -130,8 +130,9 @@ const useRecipes = () => {
                 "content-type": "application/json",
             }
         })
-
+        console.log("STATUS COUNT:", res.status);
         const json = await res.json();
+        console.log("RETORNO COUNT:", json);
         return json;
     }
 
