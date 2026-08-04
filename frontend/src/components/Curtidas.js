@@ -11,7 +11,7 @@ const Curtidas = ({ idReceita }) => {
     const [, setLoading] = useState(false);
     const [, setMessage2] = useState("");
     const [curtidas, setCurtidas] = useState(null);
-
+    console.log(curtidas)
     const [estadoCurtida, setEstadoCurtida] = useState(false);
 
     const { LikeService, DeslikeService, CountLike } = useRecipes();
@@ -24,7 +24,7 @@ const Curtidas = ({ idReceita }) => {
     }, [CountLike, idReceita]);
 
     const handleCurtir = async () => {
-
+        console.log(curtidas)
         setLoading(true);
 
         try {
@@ -74,7 +74,7 @@ const Curtidas = ({ idReceita }) => {
             }
 
             <div>
-                <p>{curtidas}</p>
+                <p>`${curtidas}`</p>
             </div>
         </div>
     )
