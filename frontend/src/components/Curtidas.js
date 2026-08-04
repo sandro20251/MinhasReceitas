@@ -55,9 +55,15 @@ const Curtidas = ({ idReceita }) => {
     }
 
     useEffect(() => {
-        atualizarCurtidas();
-        
-    }, [atualizarCurtidas]);
+
+        const buscar = async () => {
+            const total = await CountLike(idReceita);
+            setCurtidas(total.count);
+        }
+
+        buscar();
+
+    }, [idReceita]);
 
 
     return (
