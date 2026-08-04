@@ -9,7 +9,7 @@ const Curtidas = ({ idReceita }) => {
 
     const [, setLoading] = useState(false);
     const [, setMessage2] = useState("");
-    const [, curtidas, setCurtidas] = useState(0);
+    const [curtidas, setCurtidas] = useState(0);
 
     const [estadoCurtida, setEstadoCurtida] = useState(false);
 
