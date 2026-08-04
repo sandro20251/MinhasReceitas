@@ -6,8 +6,8 @@ import '../components/Curtidas.css';
 // componente para efetuar as curtidas/descurtidas de receitas
 
 const Curtidas = ({ idReceita }) => {
-    console.log("MONTANDO CURTIDAS");
-    console.log("CURTIDAS RECEBEU:", idReceita);
+    console.log("MONTANDO CURTIDAS" , idReceita);
+   
     const [, setLoading] = useState(false);
     const [, setMessage2] = useState("");
     const [curtidas, setCurtidas] = useState(0);
