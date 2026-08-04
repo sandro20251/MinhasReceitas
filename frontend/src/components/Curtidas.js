@@ -74,7 +74,7 @@ const Curtidas = ({ idReceita }) => {
             }
 
             <div>
-                <p>{curtidas.length}</p>
+                <p>{curtidas}</p>
             </div>
         </div>
     )
