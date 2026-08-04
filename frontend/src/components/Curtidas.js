@@ -21,7 +21,7 @@ const Curtidas = ({ idReceita }) => {
         const total = await CountLike(idReceita);
       
         console.log("RETORNO CURTIDAS:", total);
-        setCurtidas(total);
+        setCurtidas(total.count);
     }, [CountLike, idReceita]);
 
     const handleCurtir = async () => {
