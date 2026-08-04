@@ -158,26 +158,27 @@ const useRecipes = () => {
         return json;
     }
 
-    const allComments = async (idRecipe) => {
+    const allComments = useCallback(async (idRecipe) => {
 
         const token = localStorage.getItem('token');
 
         const res = await fetch(`${url}/${idRecipe}/comments`, {
             headers: {
-
                 authorization: `Bearer ${token}`
             }
         })
 
         const json = await res.json();
+
         if (!res.ok) {
             throw new Error(json.message);
         }
 
-        setComentarios(json)
+        setComentarios(json);
 
         return json;
-    }
+
+    }, []);
 
     const addFavorite = async (idRecipe) => {
         const token = localStorage.getItem('token');
