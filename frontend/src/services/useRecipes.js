@@ -123,7 +123,7 @@ const useRecipes = () => {
         return json;
     }
 
-    const CountLike = async (idRecipe) => {
+    const CountLike = useCallback(async (idRecipe) => {
 
         const res = await fetch(`${url}/${idRecipe}/count`, {
             headers: {
@@ -134,7 +134,7 @@ const useRecipes = () => {
         const json = await res.json();
         console.log("RETORNO COUNT:", json);
         return json;
-    }
+    }, []);
 
     const newComment = async (idRecipe, comment) => {
 
