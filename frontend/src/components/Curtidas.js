@@ -59,6 +59,7 @@ const Curtidas = ({ idReceita }) => {
 
         const buscar = async () => {
             const total = await CountLike(idReceita);
+            console.log(total)
             setCurtidas(total.count);
         }
 
@@ -74,7 +75,7 @@ const Curtidas = ({ idReceita }) => {
             }
 
             <div>
-                <p>{CountLike(idReceita)}</p>
+                <p>{curtidas}</p>
             </div>
         </div>
     )
