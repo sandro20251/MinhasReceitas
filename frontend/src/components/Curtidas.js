@@ -53,7 +53,8 @@ const Curtidas = ({ idReceita }) => {
     }
 
     useEffect(() => {
-        atualizarCurtidas();
+        // atualizarCurtidas();
+        console.log("USE EFFECT RODOU", idReceita);
     }, [atualizarCurtidas]);
 
 
