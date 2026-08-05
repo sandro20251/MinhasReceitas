@@ -1,17 +1,13 @@
-const jwt = require('jsonwebtoken');
-const { useTransition } = require('react');
-require('dotenv')
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const getUserByToken = async (token) => {
     try {
-        const user = await jwt.verify(token, process.env.JWT_SECRET);
+        const user = jwt.verify(token, process.env.JWT_SECRET);
+        return user;
     } catch (err) {
-        res.status(500).json({ message: err.message });
-        return;
+        return null;
     }
-
-    return user;
-
-}
+};
 
 module.exports = getUserByToken;
