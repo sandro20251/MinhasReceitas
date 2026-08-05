@@ -584,12 +584,19 @@ module.exports = class recipeController {
         const token = await getToken(req);
         const user2 = await getUserByToken(token)
 
+
+
         if (!mongoose.Types.ObjectId.isValid(id)) {
             res.status(422).json({ message: "ID inválido" });
             return;
         }
 
         const comment2 = await Comment.findById(id);
+
+        console.log("comment2.user:", comment2.user.toString());
+        console.log("user2:", user2);
+        console.log("user2.id:", user2.id);
+        console.log("user2._id:", user2._id);
 
         if (!comment2) {
             res.status(404).json({ message: "Comentário não encontrado" });
@@ -607,6 +614,8 @@ module.exports = class recipeController {
         const objeto = {
             text,
         }
+
+
 
         try {
 
