@@ -167,7 +167,7 @@ const Recipe = () => {
 
     const handleAlterarComentario = async (id) => {
         setAlterando(id)
-        console.log(`ALTERANDO ${alterando}`)
+        console.log(`ALTERANDO ${id}`)
       
     }
     const id2 = id;
@@ -184,7 +184,7 @@ const Recipe = () => {
         try {
 
             await updateComment(id, comment3);
-            await allComments(id2)
+            await allComments(id)
             createMessage("✅Comentário atualizado com sucesso.")
             setAlterando(null);
         } catch (err) {
