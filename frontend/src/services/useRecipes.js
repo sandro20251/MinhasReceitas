@@ -280,7 +280,7 @@ const useRecipes = () => {
             body: JSON.stringify(objeto)
 
         })
-        console.log(`Mostre o res ${res}`)
+        console.log(`res`, res)
 
         const json = await res.json();
         console.log(json)
