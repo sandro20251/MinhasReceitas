@@ -166,7 +166,7 @@ const Recipe = () => {
     }
 
     const handleAlterarComentario = async (comentario) => {
-        setAlterando(id)
+        setAlterando(comentario._id)
         setComment(comentario.text)
        
     }
