@@ -9,6 +9,8 @@ router.post('/register', UserController.register);
 router.post('/login', UserController.login);
 // buscar receitas favoritas
 router.get('/all/favorites', authorization, UserController.readFavorite);
+//  buscar favoritos por usuario
+router.get('/:idReceita/porUsuario', authorization, UserController.readFavoriteByUser);
 
 // Buscar dados do usuario
 router.get('/:id', authorization, UserController.getPeople);

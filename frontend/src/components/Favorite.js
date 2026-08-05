@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRecipes } from "../services/useRecipes";
+import { usePessoa } from "../services/usePessoa";
 import '../components/Favorite.css';
 
 // componente para favoritar/desfavoritar receita
@@ -9,10 +10,12 @@ const Favorite = ({ idReceita }) => {
     const [, setMessage] = useState("");
     const [, setLoading] = useState(false);
     const { addFavorite, removeFavorite } = useRecipes();
+    const { readRecipeFavorite } = usePessoa();
     const [estadoFavorito, setEstadoFavorito] = useState(false);
 
-    const handleFavoritar = async (e) => {
-        e.preventDefault()
+    const handleFavoritar = async () => {
+        const rf = await readRecipeFavorite(idReceita)
+        console.log(rf);
         setEstadoFavorito(true)
         setBtnAtivo(true);
         setLoading(true)
@@ -27,8 +30,8 @@ const Favorite = ({ idReceita }) => {
         }
 
     }
-    const handleDesfavoritar = async (e) => {
-        e.preventDefault()
+    const handleDesfavoritar = async () => {
+
         setEstadoFavorito(false)
         setBtnAtivo(false);
         setLoading(true)

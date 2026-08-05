@@ -34,6 +34,23 @@ const usePessoa = () => {
         return json;
     }
 
+    const readRecipeFavorite = async (idReceita) => {
+        const token = localStorage.getItem('token');
+
+        const res = await fetch(`${url}/${idReceita}/porUsuario`, {
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        })
+
+        const json = await res.json();
+
+        if (!res.ok) {
+            throw new Error(json.message);
+        }
+        return json;
+    }
+
     const deleteUser = async () => {
         const token = localStorage.getItem('token');
         const res = await fetch(`${url}/excluirConta`, {
@@ -77,7 +94,7 @@ const usePessoa = () => {
         return json;
     }
 
-    return { getPessoa, readFavorite, deleteUser, uploadAvatar }
+    return { getPessoa, readFavorite, deleteUser, uploadAvatar, readRecipeFavorite }
 }
 
 export { usePessoa }

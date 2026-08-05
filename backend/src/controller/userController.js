@@ -8,6 +8,8 @@ const Recipe = require('../models/Recipe');
 
 const Comments = require('../models/Comments');
 const Likes = require('../models/Like');
+const getToken = require('../helpers/gettoken');
+const getUserByToken = require('../helpers/getUserByToken');
 
 
 module.exports = class UserController {
@@ -224,6 +226,20 @@ module.exports = class UserController {
                 message: err.message
             });
 
+        }
+
+    }
+    //  buscar receita em favoritos
+    static readFavoriteByUser = async (req, res) => {
+        const token = await getToken(req);
+        const user2 = await getUserByToken(token);
+        const idReceita = req.params.idReceita;
+        try {
+            const receitaFavorita = await Favorite.find({ recipe: idReceita, user: user2 });
+            res.status(200).json({ message: "Receita favorita encontrada com sucesso" });
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+            return;
         }
 
     }

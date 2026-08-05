@@ -316,6 +316,12 @@ const useRecipes = () => {
         return json;
     }
 
+    const checkFavorite = async(idReceita, idUsuario)=>{
+        const token = localStorage.getItem('token');
+
+        const res = await fetch()
+    }
+
 
 
     return { setReceita, createRecipes, lerReceita, readRecipe, recipeByUser, LikeService, DeslikeService, CountLike, newComment, allComments, addFavorite, removeFavorite, searchTitle, searchCategory, deleteRecipe, updateRecipes, updateComment, receita, comentarios, deleteComment }
