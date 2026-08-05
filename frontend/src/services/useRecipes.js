@@ -280,10 +280,10 @@ const useRecipes = () => {
             body: JSON.stringify(objeto)
 
         })
-        console.log(`res`, res)
+       
 
         const json = await res.json();
-        console.log(json.message)
+        
         if (!res.ok) {
             
             throw new Error(json.message);
