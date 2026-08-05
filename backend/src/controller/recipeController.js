@@ -578,14 +578,14 @@ module.exports = class recipeController {
 
     static updateComment = async (req, res) => {
         const id = req.params.idComment;
-        console.log(id)
+        
         if (!mongoose.Types.ObjectId.isValid(id)) {
             res.status(422).json({ message: "ID inválido" });
             return;
         }
 
         const comment2 = await Comment.findById(id);
-        console.log(`comment2 ${comment2}`)
+        
         if (!comment2) {
             res.status(404).json({ message: "Comentário não encontrado" });
             return;
@@ -598,14 +598,14 @@ module.exports = class recipeController {
         }
 
         const { text } = req.body;
-        console.log(`TExt ${Text}`)
+        
         const objeto = {
             text,
         }
-        console.log(`Objeto ${objeto}`)
+        
         try {
 
-            await Comment.updateOne({ _id: id }, objeto);
+            await Comment.updateOne({ id: id }, objeto);
             res.status(200).json({ message: "Comentário atualizado com sucesso" });
             return;
         } catch (err) {
