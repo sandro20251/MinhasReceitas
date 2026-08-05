@@ -24,8 +24,10 @@ const Favorite = ({ idReceita }) => {
                 console.log(rf);
 
                 if (rf.favorito) {
+                    console.log("ENTROU COMO FAVORITO");
                     setEstadoFavorito(true);
                 } else {
+                    console.log("NÃO É FAVORITO");
                     setEstadoFavorito(false);
                 }
 
