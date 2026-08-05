@@ -38,7 +38,7 @@ router.delete('/:idRecipe/favorite', authorization, recipeContorller.removeFavor
 router.patch('/:idComment/comments', recipeContorller.updateComment);
 // excluir comentário
 router.delete('/:idComment/comments', authorization, recipeContorller.deleteComment);
-router.get('/:idReceita/like/porUsuario', authorization, RecipeController.readLikeByUser);
+router.get('/:idReceita/like/porUsuario', authorization, recipeContorller.readLikeByUser);
 
 
 
