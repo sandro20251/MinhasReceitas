@@ -231,17 +231,29 @@ module.exports = class UserController {
     }
     //  buscar receita em favoritos
     static readFavoriteByUser = async (req, res) => {
+
         const token = await getToken(req);
         const user2 = await getUserByToken(token);
         const idReceita = req.params.idReceita;
+
         try {
-            const receitaFavorita = await Favorite.find({ recipe: idReceita, user: user2.id });
-            res.status(200).json({ message: "Receita favorita encontrada com sucesso" });
+
+            const receitaFavorita = await Favorite.findOne({
+                recipe: idReceita,
+                user: user2.id
+            });
+
+            res.status(200).json({
+                favorito: !!receitaFavorita
+            });
+
         } catch (err) {
-            res.status(500).json({ message: err.message });
+
+            res.status(500).json({
+                message: err.message
+            });
             return;
         }
-
     }
 
 }
