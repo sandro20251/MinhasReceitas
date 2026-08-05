@@ -175,8 +175,9 @@ const Recipe = () => {
     const handleAtualizarComentario = async (id) => {
         console.log(`id ${id}`)
         setLoading(true)
-        
+        console.log(`comment ${comment}`)
         const comment3 = {
+            
             text: comment,
         }
         console.log(`comment3 ${comment3}`)
