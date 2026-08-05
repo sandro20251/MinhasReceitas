@@ -25,7 +25,7 @@ const Favoritos = () => {
         lerReceitas();
 
     }, [readFavorite]);
-
+    console.log(receitas)
     return (
         <div className="favoritosContainer">
             <h1>Favoritos</h1>
