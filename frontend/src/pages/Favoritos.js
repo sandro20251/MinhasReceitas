@@ -33,11 +33,11 @@ const Favoritos = () => {
                 {
                     receitas.map((item) => (
 
-                        <div key={item.recipe._id} className='recipeCardContainer'>
+                        <div key={item.recipe?._id} className='recipeCardContainer'>
                             {item.recipe.image && (
                                 <img
-                                    src={`${process.env.REACT_APP_URL}${item.recipe.image}`}
-                                    alt={item.recipe.title}
+                                    src={`${process.env.REACT_APP_URL}${item.recipe?.image}`}
+                                    alt={item.recipe?.title}
                                     className='recipeImage'
                                 />
                             )}
