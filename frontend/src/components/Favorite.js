@@ -5,9 +5,9 @@ import '../components/Favorite.css';
 // componente para favoritar/desfavoritar receita
 
 const Favorite = ({ idReceita }) => {
-    const [setBtnAtivo] = useState(false);
-    const [setMessage] = useState("");
-    const [setLoading] = useState(false);
+    const [,setBtnAtivo] = useState(false);
+    const [,setMessage] = useState("");
+    const [,setLoading] = useState(false);
     const { addFavorite, removeFavorite } = useRecipes();
     const [estadoFavorito, setEstadoFavorito] = useState(false);
 
