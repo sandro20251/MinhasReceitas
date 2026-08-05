@@ -165,10 +165,10 @@ const Recipe = () => {
         }
     }
 
-    const handleAlterarComentario = async (id) => {
+    const handleAlterarComentario = async (comentario) => {
         setAlterando(id)
-        const comentarioAlterar = await readRecipe(id)
-        setComment(comentarioAlterar)
+        setComment(comentario.text)
+       
     }
     const id2 = id;
 
@@ -448,7 +448,7 @@ const Recipe = () => {
                                         <span>Comentário: </span>
                                         <p className="comentarioTexto">{item.text}</p>
                                         <div className="botoesComentario">
-                                            <button onClick={() => handleAlterarComentario(item._id)} className="starButton">
+                                            <button onClick={() => handleAlterarComentario(item)} className="starButton">
                                                 ✏️
                                             </button>
                                             {/* aqui exclusão */}
