@@ -268,11 +268,9 @@ const useRecipes = () => {
     }
 
     const updateComment = async (id, objeto) => {
-        console.log("caiu aqui")
-        console.log(id)
-        console.log(objeto)
+        
         const token = localStorage.getItem("token");
-        console.log(token)
+        
         const res = await fetch(`${url}/${id}/comments`, {
             method: "PATCH",
             headers: {
@@ -282,13 +280,14 @@ const useRecipes = () => {
             body: JSON.stringify(objeto)
 
         })
-        console.log(res)
+        console.log(`Mostre o res ${res}`)
 
         const json = await res.json();
         console.log(json)
         if (!res.ok) {
-            HTMLFormControlsCollection.log("caiu no erro")
+            
             throw new Error(json.message);
+            console.log(`Mostre o erro ${json.message}`)
         }
         return json;
     }
