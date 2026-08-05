@@ -596,7 +596,7 @@ module.exports = class recipeController {
             return;
         }
 
-        if (comment2.user.toString() !== user2._id.toString()) {
+        if (comment2.user.toString() !== user2._id) {
             return res.status(403).json({
                 message: "Você não tem permissão para alterar este comentário."
             });
