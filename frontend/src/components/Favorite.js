@@ -15,10 +15,11 @@ const Favorite = ({ idReceita }) => {
     useEffect(() => {
 
         const checar = async () => {
-            console.log("ID da receita:", idReceita);
-            console.log("Resposta favorito:", rf);
+
             try {
                 const rf = await readRecipeFavorite(idReceita);
+                console.log("ID da receita:", idReceita);
+                console.log("Resposta favorito:", rf);
 
                 console.log(rf);
 
