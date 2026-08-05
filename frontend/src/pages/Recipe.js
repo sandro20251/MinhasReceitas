@@ -167,20 +167,20 @@ const Recipe = () => {
 
     const handleAlterarComentario = async (id) => {
         setAlterando(id)
-        console.log(`ALTERANDO ${id}`)
+       
       
     }
     const id2 = id;
-    console.log(`id2 ${id2}`)
+   
     const handleAtualizarComentario = async (id) => {
-        console.log(`id ${id}`)
+        
         setLoading(true)
-        console.log(`comment ${comment}`)
+       
         const comment3 = {
             
             text: comment,
         }
-        console.log(`comment3 ${comment3}`)
+        console.log(comment3)
 
         try {
 
