@@ -36,7 +36,7 @@ const Favoritos = () => {
                         <div key={item.recipe?._id} className='recipeCardContainer'>
                             {item.recipe.image && (
                                 <img
-                                    src={`${process.env.REACT_APP_URL}${item.recipe?.image}`}
+                                    src={`${process.env.REACT_APP_URL}/uploads/${item.recipe?.image}`}
                                     alt={item.recipe?.title}
                                     className='recipeImage'
                                 />
