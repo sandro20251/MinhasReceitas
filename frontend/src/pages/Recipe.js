@@ -167,20 +167,20 @@ const Recipe = () => {
 
     const handleAlterarComentario = async (id) => {
         setAlterando(id)
-       
-      
+
+
     }
     const id2 = id;
-   
+
     const handleAtualizarComentario = async (id) => {
-        
+
         setLoading(true)
-       
+
         const comment3 = {
-            
+
             text: comment,
         }
-        
+
 
         try {
 
@@ -329,13 +329,12 @@ const Recipe = () => {
                                                     <div className="fotoPerfil">
                                                         <p>{receita.user?.name}</p>
                                                         <img
-                                                            src={
-                                                                receita.user?.avatar
-                                                                    ? `${process.env.REACT_APP_URL_USERS}/uploads/${receita.user?.avatar}`
-                                                                    : "/avatarPadrao.png"
-                                                            }
-                                                            alt="Avatar"
-                                                            className="avatarImage"
+                                                            src={`${process.env.REACT_APP_URL}${image.startsWith("/uploads")
+                                                                ? image
+                                                                : `/uploads/${image}`
+                                                                }`}
+                                                            alt={title}
+                                                            className=""
                                                         />
 
                                                     </div>
@@ -448,11 +447,11 @@ const Recipe = () => {
                                         <span>Comentário: </span>
                                         <p className="comentarioTexto">{item.text}</p>
                                         <div className="botoesComentario">
-                                            <button onClick={()=>handleAlterarComentario(item._id)} className="starButton">
+                                            <button onClick={() => handleAlterarComentario(item._id)} className="starButton">
                                                 ✏️
                                             </button>
                                             {/* aqui exclusão */}
-                                            <button onClick={()=>handleExcluirComentario(item._id)} className="starButton">🗑️</button>
+                                            <button onClick={() => handleExcluirComentario(item._id)} className="starButton">🗑️</button>
                                         </div>
                                     </div>
 

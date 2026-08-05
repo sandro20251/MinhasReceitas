@@ -44,7 +44,7 @@ function App() {
             <Link to="/">Início</Link>
             <Link to="/register">Cadastro</Link>
             <Link to="/login">Login</Link>
-            <Link to="/favorites">favoritas</Link>
+            <Link to="/favorites">favoritos</Link>
           </div>
 
           {
