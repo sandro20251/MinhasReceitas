@@ -283,7 +283,7 @@ const useRecipes = () => {
         console.log(`res`, res)
 
         const json = await res.json();
-        console.log(json)
+        console.log(json.message)
         if (!res.ok) {
             
             throw new Error(json.message);
