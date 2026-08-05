@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRecipes } from "../services/useRecipes";
 import { usePessoa } from "../services/usePessoa";
 import '../components/Favorite.css';
@@ -12,16 +12,29 @@ const Favorite = ({ idReceita }) => {
     const { addFavorite, removeFavorite } = useRecipes();
     const { readRecipeFavorite } = usePessoa();
     const [estadoFavorito, setEstadoFavorito] = useState(false);
-    const checar = async () => {
-        const rf = await readRecipeFavorite(idReceita)
-        if (rf) {
-            setEstadoFavorito(true);
+    useEffect(() => {
+
+        const checar = async () => {
+
+            try {
+                const rf = await readRecipeFavorite(idReceita);
+
+                console.log(rf);
+
+                if (rf.favorito) {
+                    setEstadoFavorito(true);
+                } else {
+                    setEstadoFavorito(false);
+                }
+
+            } catch (err) {
+                console.log(err.message);
+            }
         }
-    }
 
+        checar();
 
-    checar();
-
+    }, [idReceita]);
     const handleFavoritar = async () => {
 
 
