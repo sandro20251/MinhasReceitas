@@ -11,7 +11,8 @@ const Favorite = ({ idReceita }) => {
     const { addFavorite, removeFavorite } = useRecipes();
     const [estadoFavorito, setEstadoFavorito] = useState(false);
 
-    const handleFavoritar = async () => {
+    const handleFavoritar = async (e) => {
+        e.preventDefault()
         setEstadoFavorito(true)
         setBtnAtivo(true);
         setLoading(true)
@@ -26,7 +27,8 @@ const Favorite = ({ idReceita }) => {
         }
 
     }
-    const handleDesfavoritar = async () => {
+    const handleDesfavoritar = async (e) => {
+        e.preventDefault()
         setEstadoFavorito(false)
         setBtnAtivo(false);
         setLoading(true)
