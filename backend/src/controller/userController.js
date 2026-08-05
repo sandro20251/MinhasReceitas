@@ -235,7 +235,7 @@ module.exports = class UserController {
         const user2 = await getUserByToken(token);
         const idReceita = req.params.idReceita;
         try {
-            const receitaFavorita = await Favorite.find({ recipe: idReceita, user: user2 });
+            const receitaFavorita = await Favorite.find({ recipe: idReceita, user: user2.id });
             res.status(200).json({ message: "Receita favorita encontrada com sucesso" });
         } catch (err) {
             res.status(500).json({ message: err.message });
