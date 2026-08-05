@@ -329,12 +329,13 @@ const Recipe = () => {
                                                     <div className="fotoPerfil">
                                                         <p>{receita.user?.name}</p>
                                                         <img
-                                                            src={`${process.env.REACT_APP_URL}${receita.image.startsWith("/uploads")
-                                                                ? receita.image
-                                                                : `/uploads/${receita.image}`
-                                                                }`}
-                                                            alt={title}
-                                                            className=""
+                                                            src={
+                                                                receita.user?.avatar
+                                                                    ? `${process.env.REACT_APP_URL}/uploads/${receita.user?.avatar}`
+                                                                    : "/avatarPadrao.png"
+                                                            }
+                                                            alt="Avatar"
+                                                            className="avatarImage"
                                                         />
 
                                                     </div>
