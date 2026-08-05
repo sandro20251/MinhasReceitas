@@ -23,8 +23,13 @@ app.use(cors({
         } else {
             callback(new Error("CORS não permitido"));
         }
-    }
+    },
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
 }));
+
+app.options("*", cors());
 
 app.use(express.json());
 
