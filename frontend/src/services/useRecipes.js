@@ -268,6 +268,7 @@ const useRecipes = () => {
     }
 
     const updateComment = async (id, objeto) => {
+        console.log("caiu aqui")
         console.log(id)
         console.log(objeto)
         const token = localStorage.getItem("token");
@@ -286,6 +287,7 @@ const useRecipes = () => {
         const json = await res.json();
         console.log(json)
         if (!res.ok) {
+            HTMLFormControlsCollection.log("caiu no erro")
             throw new Error(json.message);
         }
         return json;
