@@ -64,7 +64,7 @@ const Curtidas = ({ idReceita }) => {
             setCurtidas(total);
 
             const curtidaUsuario = await readLikeByUser(idReceita);
-
+            console.log("CURTIDA DO USUARIO:", curtidaUsuario);
             setEstadoCurtida(curtidaUsuario.liked);
 
         }
