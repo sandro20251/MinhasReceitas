@@ -459,6 +459,32 @@ module.exports = class recipeController {
             return;
         }
     }
+
+    static readLikeByUser = async (req, res) => {
+
+    const token = await getToken(req);
+    const user = await getUserByToken(token);
+
+    const idReceita = req.params.idReceita;
+
+    try {
+
+        const like = await Like.findOne({
+            recipe: idReceita,
+            user: user.id
+        });
+
+        res.status(200).json({
+            curtiu: !!like
+        });
+
+    } catch(err) {
+
+        res.status(500).json({
+            message: err.message
+        });
+    }
+}
     // Favoritando receita
 
     static addFavorite = async (req, res) => {

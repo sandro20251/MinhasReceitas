@@ -158,6 +158,26 @@ const useRecipes = () => {
         return json;
     }
 
+    const readLikeByUser = async (idReceita) => {
+
+        const token = localStorage.getItem("token");
+
+        const res = await fetch(`${url}/${idReceita}/like/porUsuario`, {
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        });
+
+        const json = await res.json();
+
+        if (!res.ok) {
+            throw new Error(json.message);
+        }
+
+        return json;
+    }
+
+
     const allComments = useCallback(async (idRecipe) => {
 
         const token = localStorage.getItem('token');
@@ -272,9 +292,9 @@ const useRecipes = () => {
     }
 
     const updateComment = async (id, objeto) => {
-        
+
         const token = localStorage.getItem("token");
-        
+
         const res = await fetch(`${url}/${id}/comments`, {
             method: "PATCH",
             headers: {
@@ -284,12 +304,12 @@ const useRecipes = () => {
             body: JSON.stringify(objeto)
 
         })
-       
+
 
         const json = await res.json();
-        
+
         if (!res.ok) {
-            
+
             throw new Error(json.message);
             console.log(`Mostre o erro ${json.message}`)
         }
@@ -316,7 +336,7 @@ const useRecipes = () => {
         return json;
     }
 
-    const checkFavorite = async(idReceita, idUsuario)=>{
+    const checkFavorite = async (idReceita, idUsuario) => {
         const token = localStorage.getItem('token');
 
         const res = await fetch()
@@ -324,7 +344,7 @@ const useRecipes = () => {
 
 
 
-    return { setReceita, createRecipes, lerReceita, readRecipe, recipeByUser, LikeService, DeslikeService, CountLike, newComment, allComments, addFavorite, removeFavorite, searchTitle, searchCategory, deleteRecipe, updateRecipes, updateComment, receita, comentarios, deleteComment }
+    return { setReceita, createRecipes, lerReceita, readRecipe, recipeByUser, LikeService, DeslikeService, CountLike, newComment, allComments, addFavorite, removeFavorite, searchTitle, searchCategory, deleteRecipe, updateRecipes, updateComment, receita, comentarios, deleteComment, readLikeByUser }
 }
 
 

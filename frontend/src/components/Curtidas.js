@@ -14,7 +14,7 @@ const Curtidas = ({ idReceita }) => {
 
     const [estadoCurtida, setEstadoCurtida] = useState(false);
 
-    const { LikeService, DeslikeService, CountLike } = useRecipes();
+    const { LikeService, DeslikeService, CountLike, readLikeByUser } = useRecipes();
 
     const atualizarCurtidas = useCallback(async () => {
         console.log("BUSCANDO CURTIDAS:", idReceita);
@@ -60,11 +60,33 @@ const Curtidas = ({ idReceita }) => {
 
         const buscar = async () => {
             const total = await CountLike(idReceita);
-           
+
             setCurtidas(total);
         }
 
         buscar();
+
+    }, [idReceita]);
+
+    useEffect(() => {
+
+        const verificarCurtida = async () => {
+
+            try {
+
+                const resultado = await readLikeByUser(idReceita);
+
+                setEstadoCurtida(resultado.curtiu);
+
+            } catch (err) {
+
+                console.log(err.message);
+
+            }
+
+        }
+
+        verificarCurtida();
 
     }, [idReceita]);
 
