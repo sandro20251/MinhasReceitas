@@ -1,3 +1,6 @@
+
+import { useCallback } from "react";
+
 const url = process.env.REACT_APP_URL_USERS;
 
 
@@ -13,7 +16,7 @@ const usePessoa = () => {
         return json;
     }
 
-    const readFavorite = async () => {
+    const readFavorite = useCallback(async () => {
 
         const token = localStorage.getItem('token');
 
@@ -32,7 +35,7 @@ const usePessoa = () => {
         }
 
         return json;
-    }
+    }, {url})
 
     const readRecipeFavorite = async (idReceita) => {
         const token = localStorage.getItem('token');
