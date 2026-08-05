@@ -181,14 +181,18 @@ const useRecipes = () => {
     }, []);
 
     const addFavorite = async (idRecipe) => {
+        console.log(idRecipe)
         const token = localStorage.getItem('token');
+        console.log(token)
         const res = await fetch(`${url}/${idRecipe}/favorite`, {
             method: "POST",
             headers: {
                 authorization: `Bearer ${token}`
             }
         })
+        console.log(res)
         const json = await res.json();
+        console.log(json)
         if (!res.ok) {
             throw new Error(json.message);
         }
