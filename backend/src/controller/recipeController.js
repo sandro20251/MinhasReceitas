@@ -280,7 +280,8 @@ module.exports = class recipeController {
             return;
         }
 
-        const user = req.user;
+        const token = await getToken(req);
+        const user = getUserByToken(token);
 
         if (!user) {
             res.status(422).json({ message: "Usuario não encontrado" });
@@ -462,29 +463,29 @@ module.exports = class recipeController {
 
     static readLikeByUser = async (req, res) => {
 
-    const token = await getToken(req);
-    const user = await getUserByToken(token);
+        const token = await getToken(req);
+        const user = await getUserByToken(token);
 
-    const idReceita = req.params.idReceita;
+        const idReceita = req.params.idReceita;
 
-    try {
+        try {
 
-        const like = await Like.findOne({
-            recipe: idReceita,
-            user: user.id
-        });
+            const like = await Like.findOne({
+                recipe: idReceita,
+                user: user.id
+            });
 
-        res.status(200).json({
-            curtiu: !!like
-        });
+            res.status(200).json({
+                curtiu: !!like
+            });
 
-    } catch(err) {
+        } catch (err) {
 
-        res.status(500).json({
-            message: err.message
-        });
+            res.status(500).json({
+                message: err.message
+            });
+        }
     }
-}
     // Favoritando receita
 
     static addFavorite = async (req, res) => {
