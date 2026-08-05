@@ -71,6 +71,7 @@ const Favorite = ({ idReceita }) => {
             setBtnAtivo(false);
         }
     }
+    console.log("Estado favorito render:", estadoFavorito);
     return (
         <div className="favoriteContainer">
             <div>
