@@ -15,7 +15,10 @@ const Favorite = ({ idReceita }) => {
 
     const handleFavoritar = async () => {
         const rf = await readRecipeFavorite(idReceita)
-        console.log(rf);
+        if (rf) {
+            setEstadoFavorito(true);
+        }
+
         setEstadoFavorito(true)
         setBtnAtivo(true);
         setLoading(true)
