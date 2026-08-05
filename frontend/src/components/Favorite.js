@@ -13,7 +13,7 @@ const Favorite = ({ idReceita }) => {
     const { readRecipeFavorite } = usePessoa();
     const [estadoFavorito, setEstadoFavorito] = useState(false);
 
-    const rf = await readRecipeFavorite(idReceita)
+    const rf = readRecipeFavorite(idReceita)
     if (rf) {
         setEstadoFavorito(true);
     }
