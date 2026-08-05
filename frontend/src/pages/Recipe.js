@@ -185,7 +185,7 @@ const Recipe = () => {
         try {
 
             await updateComment(id, comment3);
-            await allComments(id)
+            await allComments(receita._id)
             createMessage("✅Comentário atualizado com sucesso.")
             setAlterando(null);
         } catch (err) {
