@@ -13,11 +13,13 @@ const Favorite = ({ idReceita }) => {
     const { readRecipeFavorite } = usePessoa();
     const [estadoFavorito, setEstadoFavorito] = useState(false);
 
+    const rf = await readRecipeFavorite(idReceita)
+    if (rf) {
+        setEstadoFavorito(true);
+    }
+
     const handleFavoritar = async () => {
-        const rf = await readRecipeFavorite(idReceita)
-        if (rf) {
-            setEstadoFavorito(true);
-        }
+
 
         setEstadoFavorito(true)
         setBtnAtivo(true);
