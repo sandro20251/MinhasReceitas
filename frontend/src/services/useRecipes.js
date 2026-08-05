@@ -158,25 +158,25 @@ const useRecipes = () => {
         return json;
     }
 
-    const readLikeByUser = async (idReceita) => {
+   const readLikeByUser = useCallback(async (idReceita) => {
 
-        const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-        const res = await fetch(`${url}/${idReceita}/like/porUsuario`, {
-            headers: {
-                authorization: `Bearer ${token}`
-            }
-        });
-
-        const json = await res.json();
-
-        if (!res.ok) {
-            throw new Error(json.message);
+    const res = await fetch(`${url}/${idReceita}/like/porUsuario`, {
+        headers: {
+            authorization: `Bearer ${token}`
         }
+    });
 
-        return json;
+    const json = await res.json();
+
+    if (!res.ok) {
+        throw new Error(json.message);
     }
 
+    return json;
+
+}, [url]);
 
     const allComments = useCallback(async (idRecipe) => {
 
