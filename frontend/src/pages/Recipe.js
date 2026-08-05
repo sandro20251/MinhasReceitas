@@ -167,8 +167,8 @@ const Recipe = () => {
 
     const handleAlterarComentario = async (id) => {
         setAlterando(id)
-
-
+        const comentarioAlterar = await readRecipe(id)
+        setComment(comentarioAlterar)
     }
     const id2 = id;
 
