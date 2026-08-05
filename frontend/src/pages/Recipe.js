@@ -447,11 +447,11 @@ const Recipe = () => {
                                         <span>Comentário: </span>
                                         <p className="comentarioTexto">{item.text}</p>
                                         <div className="botoesComentario">
-                                            <button onClick={handleAlterarComentario(item._id)} className="starButton">
+                                            <button onClick={()=>handleAlterarComentario(item._id)} className="starButton">
                                                 ✏️
                                             </button>
                                             {/* aqui exclusão */}
-                                            <button onClick={handleExcluirComentario(item._id)} className="starButton">🗑️</button>
+                                            <button onClick={()=>handleExcluirComentario(item._id)} className="starButton">🗑️</button>
                                         </div>
                                     </div>
 
