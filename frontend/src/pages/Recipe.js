@@ -97,7 +97,7 @@ const Recipe = () => {
         const allComments2 = async () => {
             try {
                 await allComments(id)
-
+                
             } catch (err) {
                 console.log(err.message)
             }
@@ -167,16 +167,19 @@ const Recipe = () => {
 
     const handleAlterarComentario = async (id) => {
         setAlterando(id)
+        console.log(alterando)
+      
     }
     const id2 = id;
-
+    console.log(id2)
     const handleAtualizarComentario = async (id) => {
-
+        console.log(id)
         setLoading(true)
-
+        
         const comment3 = {
             text: comment,
         }
+        console.log(comment3)
 
         try {
 
