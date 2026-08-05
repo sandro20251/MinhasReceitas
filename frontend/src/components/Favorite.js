@@ -50,7 +50,7 @@ const Favorite = ({ idReceita }) => {
             </div>
             <div>
                 {
-                    estadoFavorito ? (<button onClick={handleDesfavoritar} className="starButton2">⭐</button>) : (<button onClick={handleFavoritar} className="starButton">⭐</button>)
+                    estadoFavorito ? (<button onClick={()=>handleDesfavoritar} className="starButton2">⭐</button>) : (<button onClick={()=>handleFavoritar} className="starButton">⭐</button>)
                 }
             </div>
         </div>
