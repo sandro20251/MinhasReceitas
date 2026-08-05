@@ -68,28 +68,31 @@ const Curtidas = ({ idReceita }) => {
 
     }, [idReceita]);
 
-    useEffect(() => {
+   useEffect(() => {
 
-        const verificarCurtida = async () => {
+    const verificarCurtida = async () => {
 
-            try {
+        try {
 
-                const resultado = await readLikeByUser(idReceita);
+            console.log("VERIFICANDO CURTIDA:", idReceita);
 
-                setEstadoCurtida(resultado.curtiu);
+            const resultado = await readLikeByUser(idReceita);
 
-            } catch (err) {
+            console.log("RETORNO VERIFICAR CURTIDA:", resultado);
 
-                console.log(err.message);
+            setEstadoCurtida(resultado.curtiu);
 
-            }
+        } catch(err) {
+
+            console.log("ERRO VERIFICAR CURTIDA:", err.message);
 
         }
 
-        verificarCurtida();
+    }
 
-    }, [idReceita]);
+    verificarCurtida();
 
+}, [idReceita, readLikeByUser]);
 
     return (
         <div className="curtidasContainer">
