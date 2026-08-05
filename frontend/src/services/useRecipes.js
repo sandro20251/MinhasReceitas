@@ -268,8 +268,10 @@ const useRecipes = () => {
     }
 
     const updateComment = async (id, objeto) => {
-
+        console.log(id)
+        console.log(objeto)
         const token = localStorage.getItem("token");
+        console.log(token)
         const res = await fetch(`${url}/${id}/comments`, {
             method: "PATCH",
             headers: {
@@ -279,9 +281,10 @@ const useRecipes = () => {
             body: JSON.stringify(objeto)
 
         })
+        console.log(res)
 
         const json = await res.json();
-
+        console.log(json)
         if (!res.ok) {
             throw new Error(json.message);
         }

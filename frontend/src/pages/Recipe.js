@@ -180,7 +180,7 @@ const Recipe = () => {
             
             text: comment,
         }
-        console.log(comment3)
+        
 
         try {
 
