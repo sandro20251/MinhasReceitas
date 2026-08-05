@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const Like = require('../models/Like');
 const Comment = require('../models/Comments');
 const Favorite = require('../models/Favorite');
+const getUserByToken = require('../helpers/getUserByToken');
+const getToken = require('../helpers/gettoken');
 
 
 module.exports = class recipeController {
@@ -578,34 +580,37 @@ module.exports = class recipeController {
 
     static updateComment = async (req, res) => {
         const id = req.params.idComment;
-        
+
+        const token = await getToken(req);
+        const user2 = await getUserByToken(token)
+
         if (!mongoose.Types.ObjectId.isValid(id)) {
             res.status(422).json({ message: "ID inválido" });
             return;
         }
 
         const comment2 = await Comment.findById(id);
-        
+
         if (!comment2) {
             res.status(404).json({ message: "Comentário não encontrado" });
             return;
         }
 
-        if (comment2.user.toString() !== req.user.id) {
+        if (comment2.user.toString() !== user2) {
             return res.status(403).json({
                 message: "Você não tem permissão para alterar este comentário."
             });
         }
 
         const { text } = req.body;
-        
+
         const objeto = {
             text,
         }
-        
+
         try {
 
-            await Comment.updateOne({ id: id }, objeto);
+            await Comment.updateOne({ _id: id }, objeto);
             res.status(200).json({ message: "Comentário atualizado com sucesso" });
             return;
         } catch (err) {
