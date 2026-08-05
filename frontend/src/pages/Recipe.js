@@ -217,7 +217,7 @@ const Recipe = () => {
 
     return (
 
-        <div key={receita.id} className="recipeContainer">
+        <div key={receita._id} className="recipeContainer">
             <div className="divisao10">
                 <div className="imagemReceita">
                     {receita.image && typeof receita.image === "string" && (
