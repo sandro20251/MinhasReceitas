@@ -344,7 +344,7 @@ const Recipe = () => {
                                                 </div>
 
                                                 <div className="parte1">
-                                                    <h3><span>Categoria:</span></h3>
+                                                    <h3><span>Categoria :</span></h3>
                                                     <p>{receita.category}</p>
                                                     <h3><span>Descrição:</span></h3>
                                                     <p>{receita.description}</p>
