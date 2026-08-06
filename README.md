@@ -1,9 +1,9 @@
-Minhas receitas
-Aplicação Full Stack , rede social voltada ao tema culinário, desenvolvida com React, Node.js, Express e MongoDB. O sistema permite criar, editar, excluir, pesquisar, filtrar e organizar receitas, além de interações sociais como curtir comentar e adicionar a favoritos receitas, demonstrando conhecimentos em desenvolvimento Full Stack e consumo de APIs REST além de tecnologias de autenticação como JWT E bcrypt.
+# 🍽️ MinhasReceitas
+Aplicação Full Stack , rede social voltada ao tema culinário, desenvolvida com React, Node.js, Express e MongoDB. O sistema permite criar, editar, excluir, pesquisar, filtrar e organizar receitas, além de interações sociais como curtir, comentar e adicionar receitas aos favoritos , demonstrando conhecimentos em desenvolvimento Full Stack e consumo de APIs REST além de tecnologias de autenticação como JWT e bcrypt.
 
-Descrição
+#Descrição
 
-Sistema de gerenciamento de receitas, com autenticação de usuários que também permite iterações sociais como curtir e comentar para demonstrar conhecimentos em desenvolvimento Full Stack.
+Sistema de gerenciamento de receitas, com autenticação de usuários que também permite interações sociais como curtir e comentar para demonstrar conhecimentos em desenvolvimento Full Stack.
 
 ✨ Funcionalidades
 ✅ Cadastrar novo usuário
@@ -24,6 +24,9 @@ Backend
 Node.js
 Express
 Mongoose
+JWT
+bcrypt
+Multer
 Banco de Dados
 MongoDB
 Ferramentas
@@ -85,25 +88,37 @@ MinhasReceitas
 
 ## ⚙️ Como Executar o Projeto
 
-### Backend
+Frontend
 
-Acesse a pasta do backend:
+Abra outro terminal e acesse a pasta do frontend:
 
-cd backend
-
-npm install
-npm start
-
-### Frontend
 cd frontend
+
+Instale as dependências:
+
 npm install
+
+Inicie a aplicação:
+
 npm start
+
+Após iniciar os dois serviços:
+
+Backend:
+
+http://localhost:5000
+
+Frontend:
+
+http://localhost:3000
 
 
 🌐 Deploy
 Frontend: https://minhas-receitas-rouge.vercel.app/
 
 Backend: https://minhasreceitas-production-67b9.up.railway.app/
+
+youtube: https://www.youtube.com/watch?v=VJiAbwRS5ys
 
 📚 Aprendizados
 
