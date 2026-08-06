@@ -36,26 +36,15 @@ Railway
 Home
 Home
 
-Criar tarefa
-Criar tarefa
+![Tela inicial do MinhasReceitas](./images/imagem1.jpg)
+![Tela inicial do MinhasReceitas 2](./images/imagem2.jpg)
+![Tela de detalhes da receita 1](./images/imagem3.jpg)
+![Tela de detalhes da receita 2](./images/imagem4.jpg)
+![Tela de favoritos](./images/imagem5.jpg)
+![Cadastro de novo usuário](./images/imagem6.jpg)
+![Login de novo usuário](./images/imagem7.jpg)
+![Tela de celular](./images/responsividade.jpg)
 
-Editando tarefa
-Editar tarefa
-
-Excluir tarefa
-Excluir tarefa
-
-Filtrar tarefa
-Filtrar tarefa
-
-Pesquisar tarefa
-Pesquisa tarefa
-
-Estado vazio
-Estado vazio
-
-Responsividade
-Responsividade
 
 📂 Estrutura do projeto
 
